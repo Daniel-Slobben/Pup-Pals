@@ -1,0 +1,451 @@
+fileFormatVersion: 2
+guid: 5ac45fc4ad6973442b217212f0c3cbb5
+timeCreated: 1480338699
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Gui spritesheet_0
+    21300002: Gui spritesheet_1
+    21300004: Gui spritesheet_2
+    21300006: Gui spritesheet_3
+    21300008: Gui spritesheet_4
+    21300010: Gui spritesheet_5
+    21300012: Gui spritesheet_6
+    21300014: Gui spritesheet_7
+    21300016: Gui spritesheet_8
+    21300018: Gui spritesheet_9
+    21300020: Gui spritesheet_10
+    21300022: Gui spritesheet_11
+    21300024: Gui spritesheet_12
+    21300026: Gui spritesheet_13
+    21300028: Gui spritesheet_14
+    21300030: Gui spritesheet_15
+    21300032: Gui spritesheet_16
+    21300034: Gui spritesheet_17
+    21300036: Gui spritesheet_18
+    21300038: Gui spritesheet_19
+    21300040: Gui spritesheet_20
+    21300042: Gui spritesheet_21
+    21300044: Gui spritesheet_22
+    21300046: Gui spritesheet_23
+    21300048: Gui spritesheet_24
+    21300050: Gui spritesheet_25
+    21300052: Gui spritesheet_26
+    21300054: Gui spritesheet_27
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Gui spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 270
+        width: 101
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 4, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 322
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 314
+        width: 26
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 314
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 20
+        width: 155
+        height: 356
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 18
+        width: 139
+        height: 365
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 296
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 313
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 286
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 289
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 293
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 289
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 258
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 252
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 227
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 208
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 193
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 177
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 147
+        width: 113
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 8
+        width: 159
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 118
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 71
+        width: 37
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 86
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 55
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 12
+        width: 44
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 13
+        width: 12
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 14
+        width: 26
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gui spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 14
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
