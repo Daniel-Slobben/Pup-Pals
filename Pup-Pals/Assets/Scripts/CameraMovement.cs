@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class CameraMovement : MonoBehaviour {
-
-
+    
     public float movementZone = 30;
     public float movementSpeed = 0.1f;
 
@@ -14,8 +13,6 @@ public class CameraMovement : MonoBehaviour {
     private float zoomSpeed = 0.2f;
     private float zoomMax = 10;
     private float zoomMin = 2;
-
-    public SpriteRenderer spriteBounds;
     
     private Vector3 desiredPosition;
 
@@ -24,6 +21,12 @@ public class CameraMovement : MonoBehaviour {
         desiredPosition = transform.position;
     }
 
+    /**
+     * Gets called every frame
+     * checks for arrow keys movement and mouse movement
+     * adjusts the camera based on the input
+     * Checks if the camera does not go out of bounds 
+     */
 	void Update ()
     {
         float x = 0, y =0, z = 0;
@@ -32,7 +35,7 @@ public class CameraMovement : MonoBehaviour {
         Vector3 move;
         
         updateZoom();
-
+        
         float vertExtent = Camera.main.orthographicSize;
         float horzExtent = vertExtent * Screen.width / Screen.height;
 
@@ -65,9 +68,9 @@ public class CameraMovement : MonoBehaviour {
 
             move = new Vector3(x, y, z) + transform.position;
         }
+        // Mouse movement
         else
-        {
-            // mouse movement
+        {            
             if (Input.mousePosition.x < movementZone)
             {
                 x -= speed;
@@ -109,6 +112,9 @@ public class CameraMovement : MonoBehaviour {
         Camera.main.transform.position = newCameraVector;
     }
 
+    /**
+     * Manages the scrolling
+     */
     private void updateZoom()
     {
         var scroll = Input.GetAxis("Mouse ScrollWheel");
