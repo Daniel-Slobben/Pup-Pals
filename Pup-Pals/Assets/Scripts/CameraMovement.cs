@@ -1,18 +1,24 @@
-﻿using UnityEngine;
+﻿/*
+ * This script manages the ingame camera scrolling and movement.
+ * @author Marnix Blaauw & Daniel Slobben
+ * @datecreated 30-11-2016
+ */
+
+using UnityEngine;
 using System.Collections;
 
 public class CameraMovement : MonoBehaviour {
     
-    public float movementZone = 30;
-    public float movementSpeed = 0.1f;
+    public float movementZone = 30;         //Border variable that interacts with the mouse.
+    public float movementSpeed = 0.1f;      //Movement speed of the camera.
 
-    public float mapX;
-    public float mapY;
+    public float mapX;                      //Map/background width.
+    public float mapY;                      //Map/background height.
 
-    private float zoom = 5;
-    private float zoomSpeed = 0.2f;
-    private float zoomMax = 10;
-    private float zoomMin = 2;
+    private float zoom = 5;                 //Standard zoom variable.
+    private float zoomSpeed = 0.2f;         //Zoom speed variable.
+    private float zoomMax = 10;             //Max zoom variable.
+    private float zoomMin = 2;              //Min zoom variable.
     
     private Vector3 desiredPosition;
 
@@ -21,7 +27,7 @@ public class CameraMovement : MonoBehaviour {
         desiredPosition = transform.position;
     }
 
-    /**
+    /*
      * Gets called every frame
      * checks for arrow keys movement and mouse movement
      * adjusts the camera based on the input
