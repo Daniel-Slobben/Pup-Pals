@@ -63,7 +63,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\BuildingPlot\Build.cs" />
+    <Compile Include="Assets\Scripts\BuildingPlot\BuildingPlot.cs" />
+    <Compile Include="Assets\Scripts\BuildingPlot\BuildingPlotMenu.cs" />
     <Compile Include="Assets\Scripts\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\ToggleButton.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
