@@ -2,29 +2,18 @@
 using System.Collections;
 
 public class CameraMovement : MonoBehaviour {
-
-
+    
     public float movementZone = 30;
     public float movementSpeed = 0.1f;
 
-    public float xMax = 11.37f;
-    public float xMin = -11.28f;
-
-    public float yMax = 4.83f;
-    public float yMin = -4.96f;
-
     public float mapX;
     public float mapY;
-
 
     private float zoom = 5;
     private float zoomSpeed = 0.2f;
     private float zoomMax = 10;
     private float zoomMin = 2;
-
-    public SpriteRenderer spriteBounds;
-
-
+    
     private Vector3 desiredPosition;
 
     void Start()
@@ -32,55 +21,21 @@ public class CameraMovement : MonoBehaviour {
         desiredPosition = transform.position;
     }
 
+    /**
+     * Gets called every frame
+     * checks for arrow keys movement and mouse movement
+     * adjusts the camera based on the input
+     * Checks if the camera does not go out of bounds 
+     */
 	void Update ()
     {
         float x = 0, y =0, z = 0;
         float speed = movementSpeed * Time.deltaTime;
+
+        Vector3 move;
         
         updateZoom();
-
-        // WASD/Arrow keys movement
-        float horizontalAxis = Input.GetAxis("Horizontal");
-        float verticalAxis = Input.GetAxis("Vertical");
-
-        // horizontal movement
-        if (horizontalAxis < 0)
-            x -= speed;
-        if (horizontalAxis > 0)
-            x += speed;
-        // vertical
-        if (verticalAxis < 0)
-            y -= speed;
-        if (verticalAxis > 0)
-            y += speed;
-
-        if (verticalAxis == 0)
-            y = 0;
-        if (horizontalAxis == 0)
-            x = 0;
-            
-        // mouse movement
-        if (Input.mousePosition.x < movementZone)
-        {
-            x -= speed;
-        }
-        else if (Input.mousePosition.x > Screen.width - movementZone)
-        {
-            x += speed;
-        }
-           
-
-        if (Input.mousePosition.y < movementZone)
-        {
-            y -= speed;
-        }
-        else if (Input.mousePosition.y > Screen.height - movementZone)
-        {
-            y += speed;
-        }            
-
-        Vector3 move = new Vector3(x, y, z) + desiredPosition;
-
+        
         float vertExtent = Camera.main.orthographicSize;
         float horzExtent = vertExtent * Screen.width / Screen.height;
 
@@ -88,6 +43,53 @@ public class CameraMovement : MonoBehaviour {
         float rightBound = mapX / 2 - horzExtent;
         float bottomBound = vertExtent - mapY / 2;
         float topBound = mapY / 2 - vertExtent;
+
+        // WASD/Arrow keys movement
+        float horizontalAxis = Input.GetAxisRaw("Horizontal");
+        float verticalAxis = Input.GetAxisRaw("Vertical");
+
+        if (horizontalAxis != 0|| verticalAxis != 0)
+        {
+            // horizontal movement
+            if (horizontalAxis < 0)
+                x -= speed;
+            if (horizontalAxis > 0)
+                x += speed;
+            // vertical
+            if (verticalAxis < 0)
+                y -= speed;
+            if (verticalAxis > 0)
+                y += speed;
+
+            if (verticalAxis == 0)
+                y = 0;
+            if (horizontalAxis == 0)
+                x = 0;
+
+            move = new Vector3(x, y, z) + transform.position;
+        }
+        // Mouse movement
+        else
+        {            
+            if (Input.mousePosition.x < movementZone)
+            {
+                x -= speed;
+            }
+            else if (Input.mousePosition.x > Screen.width - movementZone)
+            {
+                x += speed;
+            }
+
+            if (Input.mousePosition.y < movementZone)
+            {
+                y -= speed;
+            }
+            else if (Input.mousePosition.y > Screen.height - movementZone)
+            {
+                y += speed;
+            }
+            move = new Vector3(x, y, z) + desiredPosition;
+        }
 
         float camX = Mathf.Clamp(move.x, leftBound, rightBound);
         float camY = Mathf.Clamp(move.y, bottomBound, topBound);
@@ -108,10 +110,11 @@ public class CameraMovement : MonoBehaviour {
             desiredPosition = newCameraVector;
         }
         Camera.main.transform.position = newCameraVector;
-        
-
     }
 
+    /**
+     * Manages the scrolling
+     */
     private void updateZoom()
     {
         var scroll = Input.GetAxis("Mouse ScrollWheel");
@@ -139,5 +142,4 @@ public class CameraMovement : MonoBehaviour {
             }                
         }        
     }
-
 }
