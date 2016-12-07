@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 
 public class WashingManager : MonoBehaviour {
-
-    public float radius;
-    public Color InitialColor;
+        
     public GameObject puppet;
+    public float radius;
     public int maxPixelChange;
     public float percentageRequired;
     public float cleaningRate;
@@ -51,17 +50,16 @@ public class WashingManager : MonoBehaviour {
         }
     }
 
+    /**
+     * This function put a circle around the mouse and changes the color values of all the pixels inside the circle
+     */
     public Texture2D CopyTexture2D(Texture2D copiedTexture2D)
     {
         float differenceX;
         float differenceY;
 
-        //Create a new Texture2D, which will be the copy
-        Texture2D texture = new Texture2D(width, height);
-
-        //Choose your filtermode and wrapmode
-        texture.filterMode = FilterMode.Bilinear;
-        texture.wrapMode = TextureWrapMode.Clamp;
+        // Create a copy, i made sure it wasnt a reference. 
+        Texture2D texture = Instantiate(copiedTexture2D) as Texture2D;
 
         //Center of hit point circle 
         int m1 = (int)((hitInfo.point.x - hitInfo.collider.bounds.min.x) * (width / hitInfo.collider.bounds.size.x));
@@ -91,20 +89,9 @@ public class WashingManager : MonoBehaviour {
                         // incrementing the pixel. 
                         changedPixels[x, y] += 1;
                     }
-                    // if its been changed we have to copy the original pixel over to the new texture
-                    else
-                    {
-                        texture.SetPixel(x, y, copiedTexture2D.GetPixel(x, y));
-                    }
-                }
-                else
-                {
-                    // copies the original pixel to the new texture
-                    texture.SetPixel(x, y, copiedTexture2D.GetPixel(x, y));
                 }
             }
         }
-
         // Lets apply all our changes
         texture.Apply();
         return texture;
@@ -122,7 +109,6 @@ public class WashingManager : MonoBehaviour {
         {
             newTexture2D = mySpriteRenderer.sprite.texture;
         }
-
         //Get the name of the old sprite
         string tempName = mySpriteRenderer.sprite.name;
         //Create a new sprite
@@ -150,5 +136,4 @@ public class WashingManager : MonoBehaviour {
         }
         return false;
     }
-
 }
