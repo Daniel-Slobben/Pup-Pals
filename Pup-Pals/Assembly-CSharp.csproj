@@ -45,8 +45,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\BuildingPlot\Build.cs" />
+     <Compile Include="Assets\Scripts\BuildingPlot\BuildingPlot.cs" />
+     <Compile Include="Assets\Scripts\BuildingPlot\BuildingPlotMenu.cs" />
      <Compile Include="Assets\Scripts\CameraMovement.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\LoadPlayers.cs" />
      <Compile Include="Assets\Scripts\ToggleButton.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
