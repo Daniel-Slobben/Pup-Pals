@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-    public int soap = 0;
+    public int soap = SaveLoadController.control.food;
     public int buildingMaterials = 0;
     public int money = 0;
     public int turnNumber = 0;
@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour {
         moneyText = GameObject.Find("MoneyValue").GetComponent<Text>();
         turnNumberText = GameObject.Find("TurnValue").GetComponent<Text>();
 
+        soapText.text = "" + SaveLoadController.control.food;
+        buildingMaterialsText.text = "" + SaveLoadController.control.buldingMaterials;
+        moneyText.text = "" + SaveLoadController.control.money;
+        turnNumberText.text = "" + SaveLoadController.control.turnNumber;
+
     }
 	
 	// Update is called once per frame
@@ -32,14 +37,21 @@ public class GameManager : MonoBehaviour {
     public void nextTurn()
     {
         soap = soap + 5;
-        turnNumber = turnNumber + 1;
-        buildingMaterials = buildingMaterials + 3;
-        money = money + 5;
+        SaveLoadController.control.food += 5;
 
-        soapText.text = "" + soap;
-        buildingMaterialsText.text = "" + buildingMaterials;
-        moneyText.text = "" + money;
-        turnNumberText.text = "" + turnNumber;
+        turnNumber = turnNumber + 1;
+        SaveLoadController.control.turnNumber += 1;
+
+        buildingMaterials = buildingMaterials + 3;
+        SaveLoadController.control.buldingMaterials += 3;
+
+        money = money + 5;
+        SaveLoadController.control.money += 5;
+
+        soapText.text = "" + SaveLoadController.control.food;
+        buildingMaterialsText.text = "" + SaveLoadController.control.buldingMaterials;
+        moneyText.text = "" + SaveLoadController.control.money;
+        turnNumberText.text = "" + SaveLoadController.control.turnNumber;
 
     }
 }
