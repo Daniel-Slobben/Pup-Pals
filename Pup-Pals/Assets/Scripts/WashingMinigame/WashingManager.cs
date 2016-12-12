@@ -3,10 +3,12 @@
 public class WashingManager : MonoBehaviour {
         
     public GameObject puppet;
+    public GameObject dirtyPuppet;
     public float radius;
     public int maxPixelChange;
     public float percentageRequired;
     public float cleaningRate;
+    public Texture2D cursorTexture;
 
     private int[,] changedPixels;
     private RaycastHit2D hitInfo;
@@ -15,9 +17,11 @@ public class WashingManager : MonoBehaviour {
 
     private void Start()
     {
+        Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
         width = puppet.GetComponent<SpriteRenderer>().sprite.texture.width;
         height = puppet.GetComponent<SpriteRenderer>().sprite.texture.height;
         changedPixels = new int[width, height];
+
     }
     // Update is called once per frame
     void Update()
@@ -80,10 +84,7 @@ public class WashingManager : MonoBehaviour {
                     {
                         Color pixelColor = copiedTexture2D.GetPixel(x, y);
 
-                        // new color;
-                        pixelColor[0] += cleaningRate;
-                        pixelColor[1] += cleaningRate;
-                        pixelColor[2] += cleaningRate;
+                        pixelColor.a -= cleaningRate;
 
                         texture.SetPixel(x, y, pixelColor);
                         // incrementing the pixel. 
@@ -99,22 +100,28 @@ public class WashingManager : MonoBehaviour {
 
     public void UpdateTexture(bool clicked)
     {
-        SpriteRenderer mySpriteRenderer = puppet.GetComponent<SpriteRenderer>();
+        SpriteRenderer spriteRendererPuppet = puppet.GetComponent<SpriteRenderer>();
+        SpriteRenderer spriteRendererPuppetDirty = dirtyPuppet.GetComponent<SpriteRenderer>();
         Texture2D newTexture2D;
+        newTexture2D = spriteRendererPuppet.sprite.texture;
+        Texture2D newTexture2DDirty;
         if (clicked)
         {
-            newTexture2D = CopyTexture2D(mySpriteRenderer.sprite.texture);
+            newTexture2DDirty = CopyTexture2D(spriteRendererPuppetDirty.sprite.texture);
         }
         else
         {
-            newTexture2D = mySpriteRenderer.sprite.texture;
+            newTexture2DDirty = spriteRendererPuppetDirty.sprite.texture;
         }
         //Get the name of the old sprite
-        string tempName = mySpriteRenderer.sprite.name;
+        string tempNameDirty = spriteRendererPuppetDirty.sprite.name;
+        string tempName = spriteRendererPuppet.sprite.name;
         //Create a new sprite
-        mySpriteRenderer.sprite = Sprite.Create(newTexture2D, mySpriteRenderer.sprite.rect, new Vector2(0.5f, 0.5f));
+        spriteRendererPuppetDirty.sprite = Sprite.Create(newTexture2DDirty, spriteRendererPuppet.sprite.rect, new Vector2(0.5f, 0.5f));
+        spriteRendererPuppet.sprite = Sprite.Create(newTexture2D, spriteRendererPuppet.sprite.rect, new Vector2(0.5f, 0.5f));
         //Name the sprite, the old name
-        mySpriteRenderer.sprite.name = tempName;
+        spriteRendererPuppetDirty.sprite.name = tempNameDirty;
+        spriteRendererPuppet.sprite.name = tempName;
     }
 
     public bool checkIfDone()
