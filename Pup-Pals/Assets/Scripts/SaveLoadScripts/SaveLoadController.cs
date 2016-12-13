@@ -15,6 +15,7 @@ public class SaveLoadController : MonoBehaviour
     public int money;
     public int turnNumber;
     public int playerIdentity;
+    public ArrayList puppetArray;
 
     public bool emptySlot;
 
@@ -43,6 +44,7 @@ public class SaveLoadController : MonoBehaviour
         data.buldingMaterials = buldingMaterials;
         data.money = money;
         data.turnNumber = turnNumber;
+        data.puppetArray = puppetArray;
         data.playerIdentity = playerIdentity;
 
         bf.Serialize(file, data);
@@ -64,6 +66,7 @@ public class SaveLoadController : MonoBehaviour
             this.buldingMaterials = data.buldingMaterials;
             this.money = data.money;
             this.turnNumber = data.turnNumber;
+            this.puppetArray = data.puppetArray;
             this.playerIdentity = playerIdentity;
             Application.LoadLevel("game");
         }
@@ -74,6 +77,7 @@ public class SaveLoadController : MonoBehaviour
             this.buldingMaterials = 100;
             this.money = 100;
             this.turnNumber = 0;
+            this.puppetArray = new ArrayList(6);
             this.playerIdentity = playerIdentity;
             Application.LoadLevel("CreatePlayer");
         }
@@ -122,5 +126,6 @@ class PlayerData
     public int buldingMaterials;
     public int money;
     public int turnNumber;
-    public int playerIdentity;
+    public ArrayList puppetArray;
+    public int playerIdentity;    
 }

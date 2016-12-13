@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Linq;
 
 public class GameManager : MonoBehaviour {
 
@@ -8,6 +9,10 @@ public class GameManager : MonoBehaviour {
     public int buildingMaterials = 0;
     public int money = 0;
     public int turnNumber = 0;
+
+    public GameObject prefabPuppet;
+
+    private ArrayList puppetArray;
 
     Text soapText;
     Text buildingMaterialsText;
@@ -26,7 +31,7 @@ public class GameManager : MonoBehaviour {
         buildingMaterialsText.text = "" + SaveLoadController.control.buldingMaterials;
         moneyText.text = "" + SaveLoadController.control.money;
         turnNumberText.text = "" + SaveLoadController.control.turnNumber;
-
+        puppetArray = SaveLoadController.control.puppetArray;
     }
 	
 	// Update is called once per frame
@@ -53,5 +58,27 @@ public class GameManager : MonoBehaviour {
         moneyText.text = "" + SaveLoadController.control.money;
         turnNumberText.text = "" + SaveLoadController.control.turnNumber;
 
+    }
+
+    public void addPuppet(GameObject puppet)
+    {
+        if (puppetArray.Count < 6)
+        {
+            puppetArray.Add(puppet);
+        }
+        else
+        {
+            Debug.Log("Error tried to have more than 6 puppets");
+
+        }
+    }
+
+    /**
+     * temp
+     */
+     public void addPuppetTemp()
+    {
+        addPuppet(Instantiate(prefabPuppet));
+        Debug.Log(puppetArray.Count);
     }
 }
