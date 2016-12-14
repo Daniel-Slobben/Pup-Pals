@@ -10,14 +10,14 @@ public class BuildingPlot : MonoBehaviour {
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
-            DisplayItem.SetActive(true);
-        }
-            
+            DisplayItem.SetActive(true);        
+        }            
     }
 
     // Use this for initialization
     void Start ()
     {
+        Debug.Log("attempt 0");
         DisplayItem.SetActive(false);
     }
 }

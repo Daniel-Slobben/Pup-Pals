@@ -10,7 +10,7 @@ public class BuildingPlotMenu : MonoBehaviour {
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
-            DisplayItem.SetActive(true);
+            DisplayItem.SetActive(false);
         }
 
     }

@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour {
     public int money = SaveLoadController.control.money;
     public int turnNumber = SaveLoadController.control.turnNumber;
 
+    public ArrayList puppets;
+
     Text soapText;
     Text buildingMaterialsText;
     Text moneyText;
@@ -26,6 +28,8 @@ public class GameManager : MonoBehaviour {
         buildingMaterialsText.text = "" + SaveLoadController.control.buldingMaterials;
         moneyText.text = "" + SaveLoadController.control.money;
         turnNumberText.text = "" + SaveLoadController.control.turnNumber;
+
+        puppets = new ArrayList(6);
     }
 	
 	// Update is called once per frame
@@ -35,22 +39,70 @@ public class GameManager : MonoBehaviour {
     //Is called when the "End turn" button is pressed.
     public void nextTurn()
     {
-        soap = soap + 5;
-        SaveLoadController.control.food += 5;
+        setFood(5);
+        setWood(3);
+        setMoney(5);
 
         turnNumber = turnNumber + 1;
         SaveLoadController.control.turnNumber += 1;
-
-        buildingMaterials = buildingMaterials + 3;
-        SaveLoadController.control.buldingMaterials += 3;
-
-        money = money + 5;
-        SaveLoadController.control.money += 5;
-
-        soapText.text = "" + SaveLoadController.control.food;
-        buildingMaterialsText.text = "" + SaveLoadController.control.buldingMaterials;
-        moneyText.text = "" + SaveLoadController.control.money;
         turnNumberText.text = "" + SaveLoadController.control.turnNumber;
+    }
 
+    public void addPuppet(GameObject puppet)
+    {
+        if (puppets.Count < 6)
+        {
+            puppets.Add(puppet);
+        }
+        else
+        {
+            Debug.Log("No slots available");
+        }
+    }
+
+    public void removePuppet(GameObject puppetToRemove)
+    {
+        foreach (GameObject puppet in puppets)
+        {
+            if (puppetToRemove == puppet)
+            {
+                puppets.Remove(puppetToRemove);
+                return;
+            }
+        }
+    }
+
+    public bool setFood(int amountOfFood)
+    {
+        if (soap + amountOfFood < 0)
+        {
+            return false;
+        }
+        soap += amountOfFood;
+        SaveLoadController.control.food += amountOfFood;
+        soapText.text = "" + SaveLoadController.control.food;
+        return true;
+    }
+    public bool setWood(int amountOfWood)
+    {
+        if (buildingMaterials + amountOfWood < 0)
+        {
+            return false;
+        }
+        buildingMaterials += amountOfWood;
+        SaveLoadController.control.buldingMaterials += amountOfWood;
+        buildingMaterialsText.text = "" + SaveLoadController.control.buldingMaterials;
+        return true;
+    }
+    public bool setMoney(int AmountOfMoney)
+    {
+        if (money + AmountOfMoney < 0)
+        {
+            return false;
+        }
+        money += AmountOfMoney;
+        SaveLoadController.control.money += AmountOfMoney;
+        moneyText.text = "" + SaveLoadController.control.money;
+        return true;
     }
 }

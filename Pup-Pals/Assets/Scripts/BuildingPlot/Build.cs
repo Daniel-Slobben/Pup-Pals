@@ -7,31 +7,42 @@ public class Build : MonoBehaviour
 
     public GameObject house;
     public GameObject farm;
+    private Building buildingScript;
+    private GameObject building;
 
     private void OnMouseDown()
     {
 
         if (!EventSystem.current.IsPointerOverGameObject())
         {
+            Vector2 location = transform.parent.transform.parent.transform.position;
+
             if (gameObject.name == "HouseButton")
-            {
-                Vector2 location = destroyParent();
-                GameObject building = Instantiate(house);
-                building.transform.position = location;
+            { 
+                building = Instantiate(house);
             }
             else if (gameObject.name == "FarmButton")
             {
-                Vector2 location = destroyParent();
-                GameObject building = Instantiate(farm);
-                building.transform.position = location;
+                building = Instantiate(farm);
             }
+
+            building.transform.position = location;
+            buildingScript = (Building)building.GetComponent(typeof(Building));
+            Invoke("cost", 0.001f);
         }
     }
-
-    private Vector2 destroyParent()
+    void cost()
     {
-        Vector2 locationPoint = transform.parent.transform.parent.transform.position;
-        Destroy(transform.parent.transform.parent.gameObject);
-        return locationPoint;
+        if (buildingScript.cost())
+        {
+            Debug.Log("got monies");
+            Destroy(transform.parent.transform.parent.gameObject);
+        }
+        else
+        {
+            Debug.Log("no monies");
+            // maybe play a sound here, or make something flash. 
+            Destroy(building);
+        }
     }
 }
