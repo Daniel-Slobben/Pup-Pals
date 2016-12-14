@@ -1,24 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
-public class Build : MonoBehaviour {
+public class Build : MonoBehaviour
+{
 
     public GameObject house;
     public GameObject farm;
 
     private void OnMouseDown()
     {
-        if (gameObject.name == "HouseButton")
+
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            Vector2 location = destroyParent();
-            GameObject building = Instantiate(house);
-            building.transform.position = location;
-        }
-        else if (gameObject.name == "FarmButton")
-        {
-            Vector2 location = destroyParent();
-            GameObject building = Instantiate(farm);
-            building.transform.position = location;
+            if (gameObject.name == "HouseButton")
+            {
+                Vector2 location = destroyParent();
+                GameObject building = Instantiate(house);
+                building.transform.position = location;
+            }
+            else if (gameObject.name == "FarmButton")
+            {
+                Vector2 location = destroyParent();
+                GameObject building = Instantiate(farm);
+                building.transform.position = location;
+            }
         }
     }
 
@@ -27,5 +33,5 @@ public class Build : MonoBehaviour {
         Vector2 locationPoint = transform.parent.transform.parent.transform.position;
         Destroy(transform.parent.transform.parent.gameObject);
         return locationPoint;
-    } 
+    }
 }
