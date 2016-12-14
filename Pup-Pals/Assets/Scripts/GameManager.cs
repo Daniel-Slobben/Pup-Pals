@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+        Debug.Log("new managar made");
         soapText = GameObject.Find("SoapValue").GetComponent<Text>();
         buildingMaterialsText = GameObject.Find("BuildMatsValue").GetComponent<Text>();
         moneyText = GameObject.Find("MoneyValue").GetComponent<Text>();

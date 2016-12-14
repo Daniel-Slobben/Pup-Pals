@@ -4,17 +4,18 @@ using System.Collections;
 public abstract class Building : MonoBehaviour {
 
     public int slots;
+    protected GameManager gameManager;
     protected ArrayList puppets;
 
 	// Use this for initialization
-	void Start () {
-	
-	}
+	protected void Start () {
+        gameManager = (GameManager) GameObject.Find("GameManager").GetComponent(typeof(GameManager));
+    }
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        
+    }
 
     /**
      */

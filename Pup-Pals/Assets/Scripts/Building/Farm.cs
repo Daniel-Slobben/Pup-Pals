@@ -20,9 +20,11 @@ public class Farm : Building {
     
 
 	// Use this for initialization
-	void Start () {
+	new void Start () {
+        base.Start();
         // cost 
-        //GameManager.buildingMaterials -= woodCost;
+        gameManager.buildingMaterials -= woodCost;
+        Debug.Log("money cost" + gameManager.buildingMaterials);
 
         puppets = new ArrayList(slots);
 
