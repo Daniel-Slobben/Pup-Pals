@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
+using UnityEngine.EventSystems;
 
 public class BuildingPlot : MonoBehaviour {
 
@@ -8,7 +8,11 @@ public class BuildingPlot : MonoBehaviour {
 
     public void OnMouseDown()
     {
-        DisplayItem.SetActive(true);
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            DisplayItem.SetActive(true);
+        }
+            
     }
 
     // Use this for initialization

@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
     public int soap = SaveLoadController.control.food;
-    public int buildingMaterials = 0;
-    public int money = 0;
-    public int turnNumber = 0;
+    public int buildingMaterials = SaveLoadController.control.buldingMaterials;
+    public int money = SaveLoadController.control.money;
+    public int turnNumber = SaveLoadController.control.turnNumber;
 
     Text soapText;
     Text buildingMaterialsText;
@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour {
         buildingMaterialsText.text = "" + SaveLoadController.control.buldingMaterials;
         moneyText.text = "" + SaveLoadController.control.money;
         turnNumberText.text = "" + SaveLoadController.control.turnNumber;
-
     }
 	
 	// Update is called once per frame

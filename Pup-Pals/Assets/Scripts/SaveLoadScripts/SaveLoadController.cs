@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-using System.Collections.Generic;
 
 public class SaveLoadController : MonoBehaviour
 {
@@ -15,8 +13,6 @@ public class SaveLoadController : MonoBehaviour
     public int money;
     public int turnNumber;
     public int playerIdentity;
-
-    public bool emptySlot;
 
     // Check if only one singleton excists.
     void Awake()

@@ -49,13 +49,16 @@
      <Compile Include="Assets\Scripts\BuildingPlot\BuildingPlot.cs" />
      <Compile Include="Assets\Scripts\BuildingPlot\BuildingPlotMenu.cs" />
      <Compile Include="Assets\Scripts\CameraMovement.cs" />
+     <Compile Include="Assets\Scripts\Collider2DRaycastFilter.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\PanelManager\ToggleButton.cs" />
      <Compile Include="Assets\Scripts\SaveLoadScripts\LoadSavePlayer.cs" />
      <Compile Include="Assets\Scripts\SaveLoadScripts\SaveLoadController.cs" />
      <Compile Include="Assets\Scripts\SaveLoadScripts\SetPlayer.cs" />
      <Compile Include="Assets\Scripts\SaveLoadScripts\loadSaveInfo.cs" />
      <Compile Include="Assets\Scripts\SceneManager.cs" />
-     <Compile Include="Assets\Scripts\ToggleButton.cs" />
+     <Compile Include="Assets\Scripts\ToggleMenu.cs" />
+     <Compile Include="Assets\Scripts\WashingMinigame\WashingManager.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
