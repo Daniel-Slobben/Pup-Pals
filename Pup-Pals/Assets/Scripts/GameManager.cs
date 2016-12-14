@@ -7,7 +7,9 @@ public class GameManager : MonoBehaviour {
     public int soap = SaveLoadController.control.food;
     public int buildingMaterials = 0;
     public int money = 0;
-    public int turnNumber = 0;
+    public static int turnNumber = 0;
+
+    public ArrayList puppets;
 
     Text soapText;
     Text buildingMaterialsText;
@@ -26,6 +28,8 @@ public class GameManager : MonoBehaviour {
         buildingMaterialsText.text = "" + SaveLoadController.control.buldingMaterials;
         moneyText.text = "" + SaveLoadController.control.money;
         turnNumberText.text = "" + SaveLoadController.control.turnNumber;
+
+        puppets = new ArrayList(6);
 
     }
 	
@@ -53,5 +57,29 @@ public class GameManager : MonoBehaviour {
         moneyText.text = "" + SaveLoadController.control.money;
         turnNumberText.text = "" + SaveLoadController.control.turnNumber;
 
+    }
+
+    public void addPuppet(GameObject puppet)
+    {
+        if (puppets.Count < 6)
+        {
+            puppets.Add(puppet);
+        }
+        else
+        {
+            Debug.Log("No slots available");
+        }
+    }
+
+    public void removePuppet(GameObject puppetToRemove)
+    {
+        foreach (GameObject puppet in puppets)
+        {
+            if (puppetToRemove == puppet)
+            {
+                puppets.Remove(puppetToRemove);
+                return;
+            }
+        }
     }
 }
