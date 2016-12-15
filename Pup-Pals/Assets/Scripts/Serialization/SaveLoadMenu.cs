@@ -9,7 +9,9 @@ using System.Linq;
 
 public class SaveLoadMenu : MonoBehaviour {
 
-	public bool showMenu;
+    public static SaveLoadMenu control;
+    public int playerIdentity;
+    public int buttonNumber;
 	public bool usePersistentDataPath = true;
 	public string savePath;
 	public Dictionary<string,GameObject> prefabDictionary;
@@ -30,71 +32,31 @@ public class SaveLoadMenu : MonoBehaviour {
 		}
 	}
 
-	// Update is called once per frame
-	void Update () {
-		
-		if(Input.GetKeyDown(KeyCode.Escape)) {
-			showMenu = !showMenu;
-		}
-		
-		if(Input.GetKeyDown(KeyCode.F5)) {
-			SaveGame();
-		}
-		
-		if(Input.GetKeyDown(KeyCode.F9)) {
-			LoadGame();
-		}
-	}
-	
-	
-	
-	void OnGUI() {
-		
-		if(showMenu == true) {
-			GUILayout.BeginHorizontal();
-			GUILayout.FlexibleSpace();
-			GUILayout.BeginVertical(); 
-			GUILayout.FlexibleSpace();
-			
-			if(GUILayout.Button("Exit to Windows")) {
-				Application.Quit();
-				return;
-			}
-			
-			if(GUILayout.Button("Save Game")) {
-				
-				SaveGame();
-				return;
-			}
-			
-			if(GUILayout.Button("Load Game")) {
-				LoadGame();
-				return;
-			}
+    // Check if only one singleton excists.
+    void Awake()
+    {
+        if (control == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            control = this;
+        }
+        else if (control != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
-			GUILayout.FlexibleSpace();
-			GUILayout.EndVertical();
-			GUILayout.FlexibleSpace();
-			GUILayout.EndHorizontal();
-		}
+
+    // Update is called once per frame
+    void Update () {
 	}
 	
 	IEnumerator wait(float time) {
 		yield return new WaitForSeconds(time);
 	}
 
-	//Use this for quicksaving
-	public void SaveGame() {
-		SaveGame("QuickSave");
-	}
-
 	//use this one for specifying a filename
-	public void SaveGame(string saveGameName) {
-
-		if(string.IsNullOrEmpty(saveGameName)) {
-			Debug.Log ("SaveGameName is null or empty!");
-			return;
-		}
+	public void SaveGame(int saveGameName) {
 
 		SaveLoad.saveGamePath = savePath;
 
@@ -141,13 +103,8 @@ public class SaveLoadMenu : MonoBehaviour {
 		SaveLoad.Save(newSaveGame);
 	}
 
-	//Use this for quickloading
-	public void LoadGame() {
-		LoadGame("QuickSave");
-	}
-
 	//use this one for loading a saved gamt with a specific filename
-	public void LoadGame(string saveGameName) {
+	public void LoadGame(int saveGameName) {
 
 		//First, we will destroy all objects in the scene which are not tagged with "DontDestroy" (such as Cameras, Managers of any type, and so on... things that should persist)
 		ClearScene();
@@ -371,6 +328,16 @@ public class SaveLoadMenu : MonoBehaviour {
 			}
 		}
 	}
+
+    public void setPlayerIdentity(int id)
+    {
+        this.playerIdentity = id;
+    }
+
+    public int getPlayerIdentity()
+    {
+        return this.playerIdentity;
+    }
 
 }
 

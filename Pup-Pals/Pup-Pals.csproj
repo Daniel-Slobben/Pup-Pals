@@ -75,12 +75,10 @@
     <Compile Include="Assets\Scripts\ExampleScriptsAndClasses\TestScript.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\PanelManager\ToggleButton.cs" />
-    <Compile Include="Assets\Scripts\SaveLoadScripts\LoadSavePlayer.cs" />
-    <Compile Include="Assets\Scripts\SaveLoadScripts\SaveLoadController.cs" />
-    <Compile Include="Assets\Scripts\SaveLoadScripts\SetPlayer.cs" />
-    <Compile Include="Assets\Scripts\SaveLoadScripts\loadSaveInfo.cs" />
     <Compile Include="Assets\Scripts\SceneManager.cs" />
     <Compile Include="Assets\Scripts\Serialization\Attributes\DontSaveField.cs" />
+    <Compile Include="Assets\Scripts\Serialization\LoadSaveInfo.cs" />
+    <Compile Include="Assets\Scripts\Serialization\LoadSavePlayer.cs" />
     <Compile Include="Assets\Scripts\Serialization\Non-Mono Classes\ObjectComponent.cs" />
     <Compile Include="Assets\Scripts\Serialization\Non-Mono Classes\SceneData.cs" />
     <Compile Include="Assets\Scripts\Serialization\Non-Mono Classes\SceneObject.cs" />

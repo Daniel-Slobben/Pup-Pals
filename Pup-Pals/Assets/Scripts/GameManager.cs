@@ -4,12 +4,13 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-    public int soap = SaveLoadController.control.food;
-    public int buildingMaterials = SaveLoadController.control.buldingMaterials;
-    public int money = SaveLoadController.control.money;
-    public int turnNumber = SaveLoadController.control.turnNumber;
+    public int soap;
+    public int buildingMaterials;
+    public int money;
+    public int turnNumber;
 
     public ArrayList puppets;
+    public GameObject testPuppet;
 
     Text soapText;
     Text buildingMaterialsText;
@@ -24,21 +25,23 @@ public class GameManager : MonoBehaviour {
         moneyText = GameObject.Find("MoneyValue").GetComponent<Text>();
         turnNumberText = GameObject.Find("TurnValue").GetComponent<Text>();
 
-        soapText.text = "" + SaveLoadController.control.food;
-        buildingMaterialsText.text = "" + SaveLoadController.control.buldingMaterials;
-        moneyText.text = "" + SaveLoadController.control.money;
-        turnNumberText.text = "" + SaveLoadController.control.turnNumber;
-
-        soap = SaveLoadController.control.food;
-        buildingMaterials = SaveLoadController.control.buldingMaterials;
-        money = SaveLoadController.control.money;
-        turnNumber = SaveLoadController.control.turnNumber;
-
-        puppets = new ArrayList(6);
+        soapText.text = "" + soap;
+        buildingMaterialsText.text = "" + buildingMaterials;
+        moneyText.text = "" + money;
+        turnNumberText.text = "" + turnNumber;
     }
 	
 	// Update is called once per frame
 	void Update () {
+        if (testPuppet.GetComponent<SpriteRenderer>().sprite = null)
+        {
+            Debug.Log("after adding puppet from load: " + puppets.Count);
+        }
+        else
+        {
+            Debug.Log("This is indeed not a puppet");
+        }
+              
     }
 
     //Is called when the "End turn" button is pressed.
@@ -48,9 +51,8 @@ public class GameManager : MonoBehaviour {
         setWood(3);
         setMoney(5);
 
-        turnNumber = turnNumber + 1;
-        SaveLoadController.control.turnNumber += 1;
-        turnNumberText.text = "" + SaveLoadController.control.turnNumber;
+        turnNumber += 1;
+        turnNumberText.text = "" + turnNumber;
     }
 
     public void addPuppet(GameObject puppet)
@@ -84,8 +86,7 @@ public class GameManager : MonoBehaviour {
             return false;
         }
         soap += amountOfFood;
-        SaveLoadController.control.food += amountOfFood;
-        soapText.text = "" + SaveLoadController.control.food;
+        soapText.text = "" + soap;
         return true;
     }
     public bool setWood(int amountOfWood)
@@ -95,8 +96,7 @@ public class GameManager : MonoBehaviour {
             return false;
         }
         buildingMaterials += amountOfWood;
-        SaveLoadController.control.buldingMaterials += amountOfWood;
-        buildingMaterialsText.text = "" + SaveLoadController.control.buldingMaterials;
+        buildingMaterialsText.text = "" + buildingMaterials;
         return true;
     }
     public bool setMoney(int AmountOfMoney)
@@ -106,8 +106,7 @@ public class GameManager : MonoBehaviour {
             return false;
         }
         money += AmountOfMoney;
-        SaveLoadController.control.money += AmountOfMoney;
-        moneyText.text = "" + SaveLoadController.control.money;
+        moneyText.text = "" + money;
         return true;
     }
 }

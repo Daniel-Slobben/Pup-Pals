@@ -36,7 +36,7 @@ public static class SaveLoad {
 		
 	}	
 	
-	public static SaveGame Load(string gameToLoad) {
+	public static SaveGame Load(int gameToLoad) {
 		if(File.Exists(saveGamePath + gameToLoad + ".sav")) {
 
 			BinaryFormatter bf = new BinaryFormatter();
