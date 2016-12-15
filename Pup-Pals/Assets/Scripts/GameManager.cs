@@ -29,6 +29,11 @@ public class GameManager : MonoBehaviour {
         moneyText.text = "" + SaveLoadController.control.money;
         turnNumberText.text = "" + SaveLoadController.control.turnNumber;
 
+        soap = SaveLoadController.control.food;
+        buildingMaterials = SaveLoadController.control.buldingMaterials;
+        money = SaveLoadController.control.money;
+        turnNumber = SaveLoadController.control.turnNumber;
+
         puppets = new ArrayList(6);
     }
 	

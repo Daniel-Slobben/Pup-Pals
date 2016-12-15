@@ -71,6 +71,8 @@
     <Compile Include="Assets\Scripts\BuildingPlot\BuildingPlotMenu.cs" />
     <Compile Include="Assets\Scripts\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\Collider2DRaycastFilter.cs" />
+    <Compile Include="Assets\Scripts\ExampleScriptsAndClasses\TestClass.cs" />
+    <Compile Include="Assets\Scripts\ExampleScriptsAndClasses\TestScript.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\PanelManager\ToggleButton.cs" />
     <Compile Include="Assets\Scripts\SaveLoadScripts\LoadSavePlayer.cs" />
@@ -78,8 +80,25 @@
     <Compile Include="Assets\Scripts\SaveLoadScripts\SetPlayer.cs" />
     <Compile Include="Assets\Scripts\SaveLoadScripts\loadSaveInfo.cs" />
     <Compile Include="Assets\Scripts\SceneManager.cs" />
+    <Compile Include="Assets\Scripts\Serialization\Attributes\DontSaveField.cs" />
+    <Compile Include="Assets\Scripts\Serialization\Non-Mono Classes\ObjectComponent.cs" />
+    <Compile Include="Assets\Scripts\Serialization\Non-Mono Classes\SceneData.cs" />
+    <Compile Include="Assets\Scripts\Serialization\Non-Mono Classes\SceneObject.cs" />
+    <Compile Include="Assets\Scripts\Serialization\ObjectIdentifier.cs" />
+    <Compile Include="Assets\Scripts\Serialization\SaveLoad.cs" />
+    <Compile Include="Assets\Scripts\Serialization\SaveLoadMenu.cs" />
+    <Compile Include="Assets\Scripts\Serialization\Surrogates\ColorSurrogate.cs" />
+    <Compile Include="Assets\Scripts\Serialization\Surrogates\GameObjectSurrogate.cs" />
+    <Compile Include="Assets\Scripts\Serialization\Surrogates\QuaternionSurrogate.cs" />
+    <Compile Include="Assets\Scripts\Serialization\Surrogates\Texture2DSurrogate.cs" />
+    <Compile Include="Assets\Scripts\Serialization\Surrogates\TransformSurrogate.cs" />
+    <Compile Include="Assets\Scripts\Serialization\Surrogates\Vector3Surrogate.cs" />
+    <Compile Include="Assets\Scripts\Serialization\Utilities\TypeSystem.cs" />
     <Compile Include="Assets\Scripts\ToggleMenu.cs" />
     <Compile Include="Assets\Scripts\WashingMinigame\WashingManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Scripts\Serialization\Surrogates\SurrogatesReadMe.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
