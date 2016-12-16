@@ -2,6 +2,7 @@
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Collections;
 
 public class SaveLoadController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class SaveLoadController : MonoBehaviour
     public int money;
     public int turnNumber;
     public int playerIdentity;
+    public ArrayList puppets;
 
     // Check if only one singleton excists.
     void Awake()
@@ -40,6 +42,7 @@ public class SaveLoadController : MonoBehaviour
         data.money = money;
         data.turnNumber = turnNumber;
         data.playerIdentity = playerIdentity;
+        data.puppets = puppets;
 
         bf.Serialize(file, data);
         file.Close();
@@ -61,6 +64,7 @@ public class SaveLoadController : MonoBehaviour
             this.money = data.money;
             this.turnNumber = data.turnNumber;
             this.playerIdentity = playerIdentity;
+            this.puppets = data.puppets;
             Application.LoadLevel("game");
         }
         else
@@ -71,6 +75,8 @@ public class SaveLoadController : MonoBehaviour
             this.money = 100;
             this.turnNumber = 0;
             this.playerIdentity = playerIdentity;
+            this.puppets = new ArrayList(6);
+            
             Application.LoadLevel("CreatePlayer");
         }
     }
@@ -119,4 +125,5 @@ class PlayerData
     public int money;
     public int turnNumber;
     public int playerIdentity;
+    public ArrayList puppets;
 }

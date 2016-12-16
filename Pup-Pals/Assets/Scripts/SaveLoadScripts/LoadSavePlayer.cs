@@ -16,6 +16,8 @@ public class LoadSavePlayer : MonoBehaviour {
 
     public void savePlayer()
     {
+        GameManager gameManager = (GameManager)GameObject.FindGameObjectWithTag("GameController").GetComponent(typeof(GameManager));
+        gameManager.serializePuppets();
         Debug.Log("saved!");
         SaveLoadController.control.Save(SaveLoadController.control.getPlayerIdentity());
     }
