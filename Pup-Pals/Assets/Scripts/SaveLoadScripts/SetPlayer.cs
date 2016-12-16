@@ -12,7 +12,14 @@ public class SetPlayer : MonoBehaviour {
         string playerName = inputField.text.ToString();
         if(playerName != "")
         {
+            saveGame saveGame = new saveGame();
+
             SaveLoadController.control.setPlayerName(playerName);
+            LevelSerializer.PlayerName = playerName;
+
+            SaveLoadController.control.Save(SaveLoadController.control.getPlayerIdentity());
+            saveGame.SaveGame();
+
             Application.LoadLevel("game");
         }
     }

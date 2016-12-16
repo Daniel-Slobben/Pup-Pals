@@ -45,11 +45,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Building\Building.cs" />
+     <Compile Include="Assets\Scripts\Building\Farm.cs" />
+     <Compile Include="Assets\Scripts\Building\House.cs" />
      <Compile Include="Assets\Scripts\BuildingPlot\Build.cs" />
      <Compile Include="Assets\Scripts\BuildingPlot\BuildingPlot.cs" />
      <Compile Include="Assets\Scripts\BuildingPlot\BuildingPlotMenu.cs" />
      <Compile Include="Assets\Scripts\CameraMovement.cs" />
      <Compile Include="Assets\Scripts\Collider2DRaycastFilter.cs" />
+     <Compile Include="Assets\Scripts\FadingText.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\PanelManager\ToggleButton.cs" />
      <Compile Include="Assets\Scripts\SaveLoadScripts\LoadSavePlayer.cs" />
@@ -59,12 +63,22 @@
      <Compile Include="Assets\Scripts\SceneManager.cs" />
      <Compile Include="Assets\Scripts\ToggleMenu.cs" />
      <Compile Include="Assets\Scripts\WashingMinigame\WashingManager.cs" />
+     <Compile Include="Assets\loadGame.cs" />
+     <Compile Include="Assets\saveGame.cs" />
+     <None Include="Assets\Plugins\OpenUnityTools\unityserializer-ng\license.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
+ <Reference Include="System.Runtime.Serialization">
+ <HintPath>C:/Users/Marnix/Documents/Pup-Pals/Pup-Pals/Assets/System.Runtime.Serialization.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{F0C6E52A-956D-C0CE-B509-5A77A107C8F9}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
