@@ -4,6 +4,8 @@ using System;
 
 public class House : Building {
 
+    public Sprite house;
+
     public int timeToBuild;
     public int woodCost;
     public int slotsToBuild;
