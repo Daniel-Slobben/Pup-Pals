@@ -27,6 +27,8 @@ public class House : Building {
 
         buildProgress = 0;
         lastTurn = gameManager.turnNumber;
+
+        GetComponent<SpriteRenderer>().sprite = house;
     }
 
     // Update is called once per frame
