@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.3f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -74,10 +76,12 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Building\Building.cs" />
     <Compile Include="Assets\Scripts\Building\Farm.cs" />
-    <Compile Include="Assets\Scripts\Building\House.cs" />
-    <Compile Include="Assets\Scripts\BuildingPlot\Build.cs" />
+    <Compile Include="Assets\Scripts\Building\SanitationBuilding.cs" />
+    <Compile Include="Assets\Scripts\Building\School.cs" />
+    <Compile Include="Assets\Scripts\Building\Workshop.cs" />
+    <Compile Include="Assets\Scripts\BuildingPlot\BuildMenu.cs" />
     <Compile Include="Assets\Scripts\BuildingPlot\BuildingPlot.cs" />
-    <Compile Include="Assets\Scripts\BuildingPlot\BuildingPlotMenu.cs" />
+    <Compile Include="Assets\Scripts\BuildingPlot\Icon.cs" />
     <Compile Include="Assets\Scripts\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\Collider2DRaycastFilter.cs" />
     <Compile Include="Assets\Scripts\FadingText.cs" />
