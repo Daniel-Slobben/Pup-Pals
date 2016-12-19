@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pup-Pals.Plugins", "Pup-Pals.Plugins.csproj", "{ECBDFB40-8FF5-644A-75B4-193B56FB3538}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pup-Pals", "Pup-Pals.csproj", "{AD7793DA-CF02-BB00-A877-1320C451050E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pup-Pals.Editor.Plugins", "Pup-Pals.Editor.Plugins.csproj", "{394118B9-537E-82D6-F503-4CFC209FFB0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +13,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECBDFB40-8FF5-644A-75B4-193B56FB3538}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECBDFB40-8FF5-644A-75B4-193B56FB3538}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECBDFB40-8FF5-644A-75B4-193B56FB3538}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECBDFB40-8FF5-644A-75B4-193B56FB3538}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AD7793DA-CF02-BB00-A877-1320C451050E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AD7793DA-CF02-BB00-A877-1320C451050E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD7793DA-CF02-BB00-A877-1320C451050E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD7793DA-CF02-BB00-A877-1320C451050E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{394118B9-537E-82D6-F503-4CFC209FFB0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{394118B9-537E-82D6-F503-4CFC209FFB0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{394118B9-537E-82D6-F503-4CFC209FFB0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{394118B9-537E-82D6-F503-4CFC209FFB0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

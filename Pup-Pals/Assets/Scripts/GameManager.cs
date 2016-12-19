@@ -4,36 +4,50 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-    public int soap = SaveLoadController.control.food;
-    public int buildingMaterials = SaveLoadController.control.buldingMaterials;
-    public int money = SaveLoadController.control.money;
-    public int turnNumber = SaveLoadController.control.turnNumber;
+    public int food;
+    public int buildingMaterials;
+    public int money;
+    public int turnNumber;
 
     public ArrayList puppets;
 
-    Text soapText;
+    Text foodText;
     Text buildingMaterialsText;
     Text moneyText;
     Text turnNumberText;
+    Text text;
 
     // Use this for initialization
     void Start () {
+        
+        text = GameObject.Find("WelcomeText").GetComponent<Text>();
+        
 
-        soapText = GameObject.Find("SoapValue").GetComponent<Text>();
+        foodText = GameObject.Find("FoodValue").GetComponent<Text>();
         buildingMaterialsText = GameObject.Find("BuildMatsValue").GetComponent<Text>();
         moneyText = GameObject.Find("MoneyValue").GetComponent<Text>();
         turnNumberText = GameObject.Find("TurnValue").GetComponent<Text>();
 
-        soapText.text = "" + SaveLoadController.control.food;
-        buildingMaterialsText.text = "" + SaveLoadController.control.buldingMaterials;
-        moneyText.text = "" + SaveLoadController.control.money;
-        turnNumberText.text = "" + SaveLoadController.control.turnNumber;
+        int playerIdentity = SaveLoadController.control.getPlayerIdentity();
+        text.GetComponentInChildren<Text>().text = SaveLoadController.control.getPlayerName(playerIdentity) + "'s village";
+
+        foodText.text = "" + food;
+        buildingMaterialsText.text = "" + buildingMaterials;
+        moneyText.text = "" + money;
+        turnNumberText.text = "" + turnNumber;
+        text.CrossFadeAlpha(0.0f, 2.0f, false);
 
         puppets = new ArrayList(6);
     }
 	
 	// Update is called once per frame
 	void Update () {
+        
+        foodText.text = "" + food;
+        buildingMaterialsText.text = "" + buildingMaterials;
+        moneyText.text = "" + money;
+        turnNumberText.text = "" + turnNumber;
+
     }
 
     //Is called when the "End turn" button is pressed.
@@ -44,8 +58,8 @@ public class GameManager : MonoBehaviour {
         setMoney(5);
 
         turnNumber = turnNumber + 1;
-        SaveLoadController.control.turnNumber += 1;
-        turnNumberText.text = "" + SaveLoadController.control.turnNumber;
+        //SaveLoadController.control.turnNumber += 1;
+        turnNumberText.text = "" + turnNumber;
     }
 
     public void addPuppet(GameObject puppet)
@@ -74,13 +88,13 @@ public class GameManager : MonoBehaviour {
 
     public bool setFood(int amountOfFood)
     {
-        if (soap + amountOfFood < 0)
+        if (food + amountOfFood < 0)
         {
             return false;
         }
-        soap += amountOfFood;
-        SaveLoadController.control.food += amountOfFood;
-        soapText.text = "" + SaveLoadController.control.food;
+        food += amountOfFood;
+        //SaveLoadController.control.food += amountOfFood;
+        foodText.text = "" + food;
         return true;
     }
     public bool setWood(int amountOfWood)
@@ -90,8 +104,8 @@ public class GameManager : MonoBehaviour {
             return false;
         }
         buildingMaterials += amountOfWood;
-        SaveLoadController.control.buldingMaterials += amountOfWood;
-        buildingMaterialsText.text = "" + SaveLoadController.control.buldingMaterials;
+        //SaveLoadController.control.buldingMaterials += amountOfWood;
+        buildingMaterialsText.text = "" + buildingMaterials;
         return true;
     }
     public bool setMoney(int AmountOfMoney)
@@ -101,8 +115,8 @@ public class GameManager : MonoBehaviour {
             return false;
         }
         money += AmountOfMoney;
-        SaveLoadController.control.money += AmountOfMoney;
-        moneyText.text = "" + SaveLoadController.control.money;
+        //SaveLoadController.control.money += AmountOfMoney;
+        moneyText.text = "" + money;
         return true;
     }
 }

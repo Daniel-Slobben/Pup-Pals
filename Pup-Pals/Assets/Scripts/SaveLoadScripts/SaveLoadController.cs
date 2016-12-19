@@ -8,10 +8,6 @@ public class SaveLoadController : MonoBehaviour
 
     public static SaveLoadController control;
     public string playerName;
-    public int food;
-    public int buldingMaterials;
-    public int money;
-    public int turnNumber;
     public int playerIdentity;
 
     // Check if only one singleton excists.
@@ -32,15 +28,10 @@ public class SaveLoadController : MonoBehaviour
     public void Save(int playerIdentity)
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/playerInfo" + playerIdentity + ".dat");
+        FileStream file = File.Create(Application.persistentDataPath + "/" + playerIdentity + ".dat");
         PlayerData data = new PlayerData();
         data.playerName = playerName;
-        data.food = food;
-        data.buldingMaterials = buldingMaterials;
-        data.money = money;
-        data.turnNumber = turnNumber;
         data.playerIdentity = playerIdentity;
-
         bf.Serialize(file, data);
         file.Close();
     }
@@ -48,35 +39,27 @@ public class SaveLoadController : MonoBehaviour
     public void Load(int playerIdentity)
     //Om aan te roepen: SaveLoadController.control.Load();
     {
-        if (File.Exists(Application.persistentDataPath + "/playerInfo" + playerIdentity + ".dat"))
+        if (File.Exists(Application.persistentDataPath + "/" + playerIdentity + ".dat"))
         {
+            loadGame loadGame = new loadGame();
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/playerInfo" + playerIdentity + ".dat", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/" + playerIdentity + ".dat", FileMode.Open);
             PlayerData data = (PlayerData)bf.Deserialize(file);
             file.Close();
 
             this.playerName = data.playerName;
-            this.food = data.food;
-            this.buldingMaterials = data.buldingMaterials;
-            this.money = data.money;
-            this.turnNumber = data.turnNumber;
-            this.playerIdentity = playerIdentity;
-            Application.LoadLevel("game");
+            this.playerIdentity = data.playerIdentity;
+            loadGame.LoadGame(playerIdentity);
         }
         else
         {
             this.playerName = "";
-            this.food = 100;
-            this.buldingMaterials = 100;
-            this.money = 100;
-            this.turnNumber = 0;
-            this.playerIdentity = playerIdentity;
             Application.LoadLevel("CreatePlayer");
         }
     }
 
-    public void setPlayerIdentity(int id)
-    {
+   public void setPlayerIdentity(int id)
+   {
         this.playerIdentity = id;
     }
 
@@ -88,10 +71,10 @@ public class SaveLoadController : MonoBehaviour
     public string getPlayerName(int playerId)
     {
 
-        if (File.Exists(Application.persistentDataPath + "/playerInfo" + playerId + ".dat"))
+        if (File.Exists(Application.persistentDataPath + "/" + playerId + ".dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/playerInfo" + playerId + ".dat", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/" + playerId + ".dat", FileMode.Open);
             PlayerData data = (PlayerData)bf.Deserialize(file);
             file.Close();
             return data.playerName;
@@ -114,9 +97,5 @@ public class SaveLoadController : MonoBehaviour
 class PlayerData
 {
     public string playerName;
-    public int food;
-    public int buldingMaterials;
-    public int money;
-    public int turnNumber;
     public int playerIdentity;
 }

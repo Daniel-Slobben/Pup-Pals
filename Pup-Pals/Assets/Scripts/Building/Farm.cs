@@ -4,7 +4,7 @@ using System.Collections;
 public class Farm : Building {
     
     public int timeToBuild;
-    public int woodCost;
+    public static int woodCost = -12;
     public int slotsToBuild;
 
     public Sprite construction;
