@@ -15,7 +15,10 @@ public class SanitationBuilding : Building
     private int buildProgress; // if this reaches timeToBuild the building is done
     private int lastTurn;
     private bool build;
-    
+
+    private GameObject secondOldestPuppet = null;
+    private GameObject oldestPuppet = null;
+
     // Use this for initialization
     // this building is not finished yet. In the start function it should make the animation change to construction animation
     new void Start()
@@ -39,19 +42,19 @@ public class SanitationBuilding : Building
             {
                 buildProgress += 1;
             }
-            // decrease hygiene here.
             lastTurn = gameManager.turnNumber;
+            sanitizePuppets();
         }
         if (!build && puppets.Count >= slotsToBuild)
         {
             if (buildProgress < timeToBuild)
             {
-                // not done yet
+                // The building is not done yet;
             }
             else
             {
                 build = true;
-                // change animation here
+                changeAnimationTobuild();
             }
         }
     }
@@ -62,5 +65,41 @@ public class SanitationBuilding : Building
             Debug.Log("GameManager isnt set yet");
         }
         return gameManager.setWood(woodCost);
+    }
+    
+    private void sanitizePuppets()
+    {
+        /*
+        foreach(GameObject puppet in puppets)
+        {
+            if (oldestPuppet == null)
+            {
+                oldestPuppet = puppet;
+            }
+            else if (secondOldestPuppet == null)
+            {
+                secondOldestPuppet = puppet;
+            }
+            else if (puppet.getAge() > oldestPuppet.getAge())
+            {
+                secondOldestPuppet = oldestPuppet;
+                oldestPuppet = puppet;
+            }
+            else if (puppet.getAge() > secondOldestPuppet.getAge())
+            {
+                secondOldestPuppet = puppet;
+            }
+        }
+        oldestPuppet.sanitize();
+        secondOldestPuppet.sanitize();
+         */
+    }
+
+    private void OnDestroy()
+    {
+        /*
+        oldestPuppet.removeSanitize();
+        secondOldestPuppet.removeSanitize();
+        */
     }
 }

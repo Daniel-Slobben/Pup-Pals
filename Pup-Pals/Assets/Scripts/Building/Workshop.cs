@@ -8,6 +8,8 @@ public class Workshop : Building {
     public int timeToBuild;
     public static int woodCost = -12;
     public int slotsToBuild;
+    public int woodPerPuppet;
+    public float hygieneDecrease;
 
     public new int slots;
 
@@ -38,7 +40,8 @@ public class Workshop : Building {
             {
                 buildProgress += 1;
             }
-            // decrease hygiene here.
+            gameManager.setWood(woodPerPuppet * puppets.Count);
+            Debug.Log("Awarded: " + woodPerPuppet * puppets.Count + " wood");
             lastTurn = gameManager.turnNumber;
         }
         if (!build && puppets.Count >= slotsToBuild)
@@ -50,7 +53,7 @@ public class Workshop : Building {
             else
             {
                 build = true;
-                // change animation here
+                changeAnimationTobuild();
             }
         }
     }
@@ -62,4 +65,18 @@ public class Workshop : Building {
         }
         return gameManager.setWood(woodCost);
     }
+
+    /**
+     * This method doesnt work yet because puppets dont have support for hygiene
+     */
+    private void decreaseHygieneOfPuppet()
+    {
+        foreach (GameObject puppet in puppets)
+        {
+            //float totalHygiene = puppet.getHygiene();
+            //puppet.setHygiene((hygieneDecrease - 1) * totalHygiene);
+        }
+    }
+
+    
 }

@@ -7,6 +7,7 @@ public abstract class Building : MonoBehaviour
     protected int slots;
     protected GameManager gameManager;
     protected ArrayList puppets;
+    public Sprite construction;
 
     // Use this for initialization
     protected void Start()
@@ -45,6 +46,14 @@ public abstract class Building : MonoBehaviour
                 return;
             }
         }
+    }
+
+    /**
+     * Change sprite to done
+     */
+    protected void changeAnimationTobuild()
+    {
+        GetComponent<SpriteRenderer>().sprite = construction;
     }
     public abstract bool cost();
 }

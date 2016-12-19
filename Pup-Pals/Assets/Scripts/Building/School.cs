@@ -8,6 +8,7 @@ public class School : Building {
     public int timeToBuild;
     public static int woodCost = -32;
     public int slotsToBuild;
+    public int timeToSchool;
 
     public new int slots;
 
@@ -40,6 +41,7 @@ public class School : Building {
             }
             // decrease hygiene here.
             lastTurn = gameManager.turnNumber;
+            schoolPuppets();
         }
         if (!build && puppets.Count >= slotsToBuild)
         {
@@ -50,7 +52,7 @@ public class School : Building {
             else
             {
                 build = true;
-                // change animation here
+                changeAnimationTobuild();
             }
         }
     }
@@ -61,6 +63,20 @@ public class School : Building {
             Debug.Log("GameManager isnt set yet");
         }
         return gameManager.setWood(woodCost);
+    }
+
+    private void schoolPuppets()
+    {
+        /*
+        foreach (GameObject puppet in puppets)
+        {
+            puppet.timeInSchool++;
+            if (puppet.timeInSchool > timeToSchool)
+            {
+                puppet.school();
+            }
+        }
+        */
     }
 }
 
