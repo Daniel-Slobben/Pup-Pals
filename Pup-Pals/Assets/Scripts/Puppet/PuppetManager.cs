@@ -9,6 +9,8 @@ public class PuppetManager : MonoBehaviour
     public int health;
     public NameGenerator nameGenerator;
 
+    public bool busy;
+
     // Use this for initialization
     void Start()
     {

@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour {
     public ArrayList puppets;
     public List<GameObject> puppetSlots;
 
+    public static GameObject PuppetTransport;
+
     Text foodText;
     Text buildingMaterialsText;
     Text moneyText;
@@ -44,12 +46,11 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
-        foodText.text = "" + food;
-        buildingMaterialsText.text = "" + buildingMaterials;
-        moneyText.text = "" + money;
-        turnNumberText.text = "" + turnNumber;
-
+        if (Input.GetMouseButtonDown(1))
+        {
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            GameManager.PuppetTransport = null;
+        }
     }
 
     //Is called when the "End turn" button is pressed.
@@ -70,6 +71,8 @@ public class GameManager : MonoBehaviour {
         {
             GameObject newPuppet = Instantiate(puppet);
             puppetSlots[puppets.Count].SetActive(true);
+            PuppetPanel slotScript = (PuppetPanel)puppetSlots[puppets.Count].GetComponent(typeof(PuppetPanel));
+            slotScript.puppetSlot = newPuppet;
             puppets.Add(newPuppet);
         }
         else

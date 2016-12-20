@@ -3,14 +3,10 @@ using System.Collections;
 
 public class School : Building {
 
-    public Sprite school;
-
     public int timeToBuild;
     public static int woodCost = -32;
     public int slotsToBuild;
     public int timeToSchool;
-
-    public new int slots;
 
     private int buildProgress; // if this reaches timeToBuild the building is done
     private int lastTurn;
@@ -27,7 +23,7 @@ public class School : Building {
         buildProgress = 0;
         lastTurn = gameManager.turnNumber;
 
-        GetComponent<SpriteRenderer>().sprite = school;
+        GetComponent<SpriteRenderer>().sprite = construction;
     }
 
     // Update is called once per frame

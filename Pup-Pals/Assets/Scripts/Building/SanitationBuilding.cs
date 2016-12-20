@@ -4,13 +4,10 @@ using System;
 
 public class SanitationBuilding : Building
 {
-    public Sprite sanitationBuilding;
 
     public int timeToBuild;
     public static int woodCost = -24;
     public int slotsToBuild;
-
-    public new int slots;
 
     private int buildProgress; // if this reaches timeToBuild the building is done
     private int lastTurn;
@@ -30,7 +27,7 @@ public class SanitationBuilding : Building
         buildProgress = 0;
         lastTurn = gameManager.turnNumber;
 
-        GetComponent<SpriteRenderer>().sprite = sanitationBuilding;
+        GetComponent<SpriteRenderer>().sprite = construction;
     }
 
     // Update is called once per frame

@@ -9,10 +9,6 @@ public class Farm : Building
     public int slotsToBuild;
     public int woodPerPuppet;
 
-    public Sprite farm;
-
-    public new int slots;
-
     public string state; // 4 states: None, Sowing, Growing, Harvest
 
     private int buildProgress; // if this reaches timeToBuild the building is done
