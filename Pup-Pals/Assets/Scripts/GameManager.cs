@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour {
     public int turnNumber;
 
     public ArrayList puppets;
+    public List<GameObject> puppetSlots;
+    public GameObject puppet;
 
     Text foodText;
     Text buildingMaterialsText;
@@ -36,18 +39,16 @@ public class GameManager : MonoBehaviour {
         moneyText.text = "" + money;
         turnNumberText.text = "" + turnNumber;
         text.CrossFadeAlpha(0.0f, 2.0f, false);
-
         puppets = new ArrayList(6);
+
+        GameObject puppeta = puppetSlots[0];
+        puppeta.SetActive(true);
+
     }
 	
 	// Update is called once per frame
 	void Update () {
-        
-        foodText.text = "" + food;
-        buildingMaterialsText.text = "" + buildingMaterials;
-        moneyText.text = "" + money;
-        turnNumberText.text = "" + turnNumber;
-
+       
     }
 
     //Is called when the "End turn" button is pressed.
@@ -66,7 +67,19 @@ public class GameManager : MonoBehaviour {
     {
         if (puppets.Count < 6)
         {
-            puppets.Add(puppet);
+            Debug.Log(puppets.Count);
+            GameObject newPuppet = Instantiate(puppet);
+            puppets.Add(newPuppet);
+            int i = puppets.Count;
+
+
+
+
+            // Pak juiste puppetslot, koppel puppet met puppetslot, geef juste shit weer, update per turn, maak clickable.
+
+           // puppetSlots.Add(GameObject.Find("PuppetSlot" + puppets.Count));
+           // GameObject puppetslot = GameObject.Find("PuppetSlot" + puppets.Count);
+           // Debug.Log(puppetslot.name);
         }
         else
         {
@@ -86,8 +99,17 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void setPuppetPanel(int panelNumber)
+    {
+        Debug.Log("PuppetSlot" + panelNumber);
+        puppetSlots.Add(GameObject.Find("PuppetSlot" + panelNumber));
+        GameObject puppetslot = GameObject.Find("PuppetSlot" + panelNumber);
+        puppetslot.SetActive(true);
+    }
+
     public bool setFood(int amountOfFood)
     {
+        
         if (food + amountOfFood < 0)
         {
             return false;
