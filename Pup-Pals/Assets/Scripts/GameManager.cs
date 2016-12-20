@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour {
     public int turnNumber;
 
     public ArrayList puppets;
+    public List<GameObject> puppetSlots;
 
     Text foodText;
     Text buildingMaterialsText;
@@ -66,7 +68,9 @@ public class GameManager : MonoBehaviour {
     {
         if (puppets.Count < 6)
         {
-            puppets.Add(puppet);
+            GameObject newPuppet = Instantiate(puppet);
+            puppetSlots[puppets.Count].SetActive(true);
+            puppets.Add(newPuppet);
         }
         else
         {
