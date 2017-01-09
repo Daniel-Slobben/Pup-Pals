@@ -15,6 +15,7 @@ public abstract class Building : MonoBehaviour
     {
         Debug.Log("atleast i tried");
         gameManager = (GameManager)GameObject.FindGameObjectWithTag("GameController").GetComponent(typeof(GameManager));
+        gameManager.addBuilding(this);
     }
 
     // Update is called once per frame
@@ -62,6 +63,7 @@ public abstract class Building : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = building;
     }
     public abstract bool cost();
+    public abstract void nextTurn();
 
     private void OnMouseUp()
     {

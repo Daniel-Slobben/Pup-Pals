@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour {
 
     public static GameObject PuppetTransport;
 
+    public ArrayList buildings;
+
     Text foodText;
     Text buildingMaterialsText;
     Text moneyText;
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour {
         text.CrossFadeAlpha(0.0f, 2.0f, false);
 
         puppets = new ArrayList(6);
+        buildings = new ArrayList();
     }
 	
 	// Update is called once per frame
@@ -63,6 +66,8 @@ public class GameManager : MonoBehaviour {
         turnNumber = turnNumber + 1;
         //SaveLoadController.control.turnNumber += 1;
         turnNumberText.text = "" + turnNumber;
+
+        notifyBuildingOfNextTurn();
     }
 
     public void addPuppet(GameObject puppet)
@@ -125,5 +130,31 @@ public class GameManager : MonoBehaviour {
         //SaveLoadController.control.money += AmountOfMoney;
         moneyText.text = "" + money;
         return true;
+    }
+    private void notifyBuildingOfNextTurn()
+    {
+        foreach (Building building in buildings)
+        {
+            building.nextTurn();
+            Debug.Log("Notifying buildings of next turn");
+        }
+    }
+
+    public void addBuilding(Building building)
+    {
+        buildings.Add(building);
+        Debug.Log("Added building to the game manager");
+    }
+
+    public void removeBuilding(Building buildingToRemove)
+    {
+        foreach (Building building in buildings)
+        {
+            if (buildingToRemove == building)
+            {
+                buildings.Remove(buildingToRemove);
+                return;
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class School : Building {
 
@@ -25,33 +26,6 @@ public class School : Building {
 
         GetComponent<SpriteRenderer>().sprite = construction;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (lastTurn != gameManager.turnNumber)
-        {
-            if (!build && puppets.Count >= slotsToBuild)
-            {
-                buildProgress += 1;
-            }
-            // decrease hygiene here.
-            lastTurn = gameManager.turnNumber;
-            schoolPuppets();
-        }
-        if (!build && puppets.Count >= slotsToBuild)
-        {
-            if (buildProgress < timeToBuild)
-            {
-                // not done yet
-            }
-            else
-            {
-                build = true;
-                changeAnimationTobuild();
-            }
-        }
-    }
     public override bool cost()
     {
         if (gameManager == null)
@@ -73,6 +47,25 @@ public class School : Building {
             }
         }
         */
+    }
+
+    public override void nextTurn()
+    {
+        if (!build && puppets.Count >= slotsToBuild)
+        {
+            buildProgress += 1;
+            if (buildProgress >= timeToBuild)
+            {
+                build = true;
+                changeAnimationTobuild();
+            }
+        }        
+        if (build)
+        {
+            // decrease hygiene here.
+            schoolPuppets();
+        }
+        lastTurn = gameManager.turnNumber;
     }
 }
 
