@@ -30,31 +30,6 @@ public class SanitationBuilding : Building
         GetComponent<SpriteRenderer>().sprite = construction;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (lastTurn != gameManager.turnNumber)
-        {
-            if (!build && puppets.Count >= slotsToBuild)
-            {
-                buildProgress += 1;
-            }
-            lastTurn = gameManager.turnNumber;
-            sanitizePuppets();
-        }
-        if (!build && puppets.Count >= slotsToBuild)
-        {
-            if (buildProgress < timeToBuild)
-            {
-                // The building is not done yet;
-            }
-            else
-            {
-                build = true;
-                changeAnimationTobuild();
-            }
-        }
-    }
     public override bool cost()
     {
         if (gameManager == null)
@@ -98,5 +73,25 @@ public class SanitationBuilding : Building
         oldestPuppet.removeSanitize();
         secondOldestPuppet.removeSanitize();
         */
+    }
+
+    public override void nextTurn()
+    {
+        if (!build && puppets.Count >= slotsToBuild)
+        {
+            buildProgress += 1;
+            if (buildProgress >= timeToBuild)
+            {
+                build = true;
+                changeAnimationTobuild();
+            }
+        }
+        
+        if (build)
+        {
+            // decrease hygiene here.
+            sanitizePuppets();
+        }
+        lastTurn = gameManager.turnNumber;
     }
 }

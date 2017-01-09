@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Workshop : Building {
 
@@ -28,32 +29,6 @@ public class Workshop : Building {
         GetComponent<SpriteRenderer>().sprite = construction;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (lastTurn != gameManager.turnNumber)
-        {
-            if (!build && puppets.Count >= slotsToBuild)
-            {
-                buildProgress += 1;
-            }
-            gameManager.setWood(woodPerPuppet * puppets.Count);
-            Debug.Log("Awarded: " + woodPerPuppet * puppets.Count + " wood");
-            lastTurn = gameManager.turnNumber;
-        }
-        if (!build && puppets.Count >= slotsToBuild)
-        {
-            if (buildProgress < timeToBuild)
-            {
-                // not done yet
-            }
-            else
-            {
-                build = true;
-                changeAnimationTobuild();
-            }
-        }
-    }
     public override bool cost()
     {
         if (gameManager == null)
@@ -75,5 +50,23 @@ public class Workshop : Building {
         }
     }
 
-    
+    public override void nextTurn()
+    {
+        if (!build && puppets.Count >= slotsToBuild)
+        {
+            buildProgress += 1;
+            if (buildProgress >= timeToBuild)
+            {
+                build = true;
+                changeAnimationTobuild();
+            }
+        }
+        
+        if (build)
+        {
+            // decrease hygiene here.
+            gameManager.setWood(woodPerPuppet * puppets.Count);
+        }
+        lastTurn = gameManager.turnNumber;
+    }
 }
