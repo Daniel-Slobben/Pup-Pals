@@ -10,9 +10,6 @@ public class Workshop : Building {
     public int slotsToBuild;
     public int woodPerPuppet;
     public float hygieneDecrease;
-
-    public new int slots;
-
     private int buildProgress; // if this reaches timeToBuild the building is done
     private int lastTurn;
     private bool build;
@@ -28,7 +25,7 @@ public class Workshop : Building {
         buildProgress = 0;
         lastTurn = gameManager.turnNumber;
 
-        GetComponent<SpriteRenderer>().sprite = workshop;
+        GetComponent<SpriteRenderer>().sprite = construction;
     }
 
     // Update is called once per frame

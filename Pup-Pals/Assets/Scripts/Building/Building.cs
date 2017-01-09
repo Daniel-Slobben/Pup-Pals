@@ -4,10 +4,11 @@ using System.Collections;
 public abstract class Building : MonoBehaviour
 {
 
-    protected int slots;
+    public int slots;
     protected GameManager gameManager;
-    protected ArrayList puppets;
+    public ArrayList puppets;
     public Sprite construction;
+    public Sprite building;
 
     // Use this for initialization
     protected void Start()
@@ -26,8 +27,11 @@ public abstract class Building : MonoBehaviour
      */
     public void addPuppet(GameObject puppet)
     {
-        if (puppets.Count < slots)
+        PuppetManager puppetScript = (PuppetManager)puppet.GetComponent(typeof(PuppetManager));
+        Debug.Log("puppet count: " + puppets.Count);
+        if (puppets.Count < slots && !puppetScript.busy)
         {
+            puppetScript.busy = true;
             puppets.Add(puppet);
         }
         else
@@ -42,6 +46,8 @@ public abstract class Building : MonoBehaviour
         {
             if (puppetToRemove == puppet)
             {
+                PuppetManager puppetScript = (PuppetManager)puppetToRemove.GetComponent(typeof(PuppetManager));
+                puppetScript.busy = false;
                 puppets.Remove(puppetToRemove);
                 return;
             }
@@ -53,7 +59,17 @@ public abstract class Building : MonoBehaviour
      */
     protected void changeAnimationTobuild()
     {
-        GetComponent<SpriteRenderer>().sprite = construction;
+        GetComponent<SpriteRenderer>().sprite = building;
     }
     public abstract bool cost();
+
+    private void OnMouseUp()
+    {
+        if (GameManager.PuppetTransport != null)
+        {
+            addPuppet(GameManager.PuppetTransport);
+            GameManager.PuppetTransport = null;
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        }
+    }
 }
