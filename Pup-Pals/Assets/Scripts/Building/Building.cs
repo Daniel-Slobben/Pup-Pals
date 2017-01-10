@@ -9,6 +9,12 @@ public abstract class Building : MonoBehaviour
     public ArrayList puppets;
     public Sprite construction;
     public Sprite building;
+    public bool build;
+    public int slotsToBuild;
+    public int buildProgress;
+    public int timeToBuild;
+
+    public string buildingName;
 
     // Use this for initialization
     protected void Start()
@@ -33,7 +39,7 @@ public abstract class Building : MonoBehaviour
         if (puppets.Count < slots && !puppetScript.busy)
         {
             puppetScript.busy = true;
-            puppets.Add(puppet);
+            puppets.Add(puppet);            
         }
         else
         {
@@ -63,7 +69,34 @@ public abstract class Building : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = building;
     }
     public abstract bool cost();
-    public abstract void nextTurn();
+    public void nextTurn()
+    {
+        if (!build && puppets.Count >= slotsToBuild)
+        {
+            buildProgress += 1;
+            if (buildProgress >= timeToBuild)
+            {
+                build = true;
+                changeAnimationTobuild();
+                setOccupation();
+            }
+            if (build)
+            {
+                specialBuildingAction();
+            }
+        }
+    }
+
+    private void setOccupation()
+    {
+        foreach (GameObject puppet in puppets)
+        {
+            PuppetManager puppetScript = puppet.GetComponent<PuppetManager>();
+            puppetScript.occupation = buildingName;
+        }
+    }
+
+    protected abstract void specialBuildingAction();
 
     private void OnMouseUp()
     {
