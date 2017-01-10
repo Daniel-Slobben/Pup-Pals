@@ -47,15 +47,20 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Building\Building.cs" />
      <Compile Include="Assets\Scripts\Building\Farm.cs" />
-     <Compile Include="Assets\Scripts\Building\House.cs" />
-     <Compile Include="Assets\Scripts\BuildingPlot\Build.cs" />
+     <Compile Include="Assets\Scripts\Building\SanitationBuilding.cs" />
+     <Compile Include="Assets\Scripts\Building\School.cs" />
+     <Compile Include="Assets\Scripts\Building\Workshop.cs" />
+     <Compile Include="Assets\Scripts\BuildingPlot\BuildMenu.cs" />
      <Compile Include="Assets\Scripts\BuildingPlot\BuildingPlot.cs" />
-     <Compile Include="Assets\Scripts\BuildingPlot\BuildingPlotMenu.cs" />
+     <Compile Include="Assets\Scripts\BuildingPlot\Icon.cs" />
      <Compile Include="Assets\Scripts\CameraMovement.cs" />
      <Compile Include="Assets\Scripts\Collider2DRaycastFilter.cs" />
      <Compile Include="Assets\Scripts\FadingText.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\PanelManager\ToggleButton.cs" />
+     <Compile Include="Assets\Scripts\Puppet\NameGenerator.cs" />
+     <Compile Include="Assets\Scripts\Puppet\PuppetManager.cs" />
+     <Compile Include="Assets\Scripts\PuppetPanel.cs" />
      <Compile Include="Assets\Scripts\SaveLoadScripts\LoadSavePlayer.cs" />
      <Compile Include="Assets\Scripts\SaveLoadScripts\SaveLoadController.cs" />
      <Compile Include="Assets\Scripts\SaveLoadScripts\SetPlayer.cs" />

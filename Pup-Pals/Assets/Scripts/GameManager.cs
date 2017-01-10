@@ -3,7 +3,8 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
     public int food;
     public int buildingMaterials;
@@ -24,10 +25,11 @@ public class GameManager : MonoBehaviour {
     Text text;
 
     // Use this for initialization
-    void Start () {
-        
+    void Start()
+    {
+
         text = GameObject.Find("WelcomeText").GetComponent<Text>();
-        
+
 
         foodText = GameObject.Find("FoodValue").GetComponent<Text>();
         buildingMaterialsText = GameObject.Find("BuildMatsValue").GetComponent<Text>();
@@ -46,9 +48,10 @@ public class GameManager : MonoBehaviour {
         puppets = new ArrayList(6);
         buildings = new ArrayList();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         if (Input.GetMouseButtonDown(1))
         {
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
@@ -59,6 +62,7 @@ public class GameManager : MonoBehaviour {
     //Is called when the "End turn" button is pressed.
     public void nextTurn()
     {
+        //Must be checked for certain buildings.
         setFood(5);
         setWood(3);
         setMoney(5);
@@ -68,15 +72,20 @@ public class GameManager : MonoBehaviour {
         turnNumberText.text = "" + turnNumber;
 
         notifyBuildingOfNextTurn();
+        updatePuppets(puppets);
     }
 
     public void addPuppet(GameObject puppet)
     {
         if (puppets.Count < 6)
         {
+            int puppetId = findEmptyPuppetSlot();
             GameObject newPuppet = Instantiate(puppet);
-            puppetSlots[puppets.Count].SetActive(true);
-            PuppetPanel slotScript = (PuppetPanel)puppetSlots[puppets.Count].GetComponent(typeof(PuppetPanel));
+            PuppetManager puppetManager = newPuppet.GetComponent<PuppetManager>();
+            puppetManager.puppetId = puppetId;
+
+            puppetSlots[puppetId].SetActive(true);
+            PuppetPanel slotScript = (PuppetPanel)puppetSlots[puppetId].GetComponent(typeof(PuppetPanel));
             slotScript.puppetSlot = newPuppet;
             puppets.Add(newPuppet);
         }
@@ -88,11 +97,15 @@ public class GameManager : MonoBehaviour {
 
     public void removePuppet(GameObject puppetToRemove)
     {
+        Debug.Log("Removing puppet..");
         foreach (GameObject puppet in puppets)
         {
             if (puppetToRemove == puppet)
             {
+                PuppetManager puppetManager = puppet.GetComponent<PuppetManager>();
+                puppetSlots[puppetManager.puppetId].SetActive(false);
                 puppets.Remove(puppetToRemove);
+                Destroy(puppet);
                 return;
             }
         }
@@ -156,5 +169,36 @@ public class GameManager : MonoBehaviour {
                 return;
             }
         }
+    }
+
+    public void updatePuppets(ArrayList puppets)
+    {
+        ArrayList tempPuppets;
+        tempPuppets = puppets;
+
+
+        foreach (GameObject puppet in tempPuppets.ToArray())
+        {
+            PuppetManager puppetManager = puppet.GetComponent<PuppetManager>();
+            if (puppetManager.decreaseHygiene(puppet) == true)
+            {
+                removePuppet(puppet);
+            }
+        }
+
+    }
+
+    public int findEmptyPuppetSlot()
+    {
+        foreach(GameObject slot in puppetSlots)
+        {
+            PuppetPanel puppetPanel = slot.GetComponent<PuppetPanel>();
+            if (puppetPanel.puppetSlot == null)
+            {
+                return puppetPanel.slotId;
+            }
+            
+        }
+        return 0;
     }
 }
