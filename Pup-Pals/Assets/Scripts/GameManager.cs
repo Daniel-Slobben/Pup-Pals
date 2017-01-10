@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
 
     public ArrayList buildings;
 
+    public bool firstPlay;
+
     Text foodText;
     Text buildingMaterialsText;
     Text moneyText;
@@ -39,14 +41,18 @@ public class GameManager : MonoBehaviour
         int playerIdentity = SaveLoadController.control.getPlayerIdentity();
         text.GetComponentInChildren<Text>().text = SaveLoadController.control.getPlayerName(playerIdentity) + "'s village";
 
-        foodText.text = "" + food;
-        buildingMaterialsText.text = "" + buildingMaterials;
-        moneyText.text = "" + money;
-        turnNumberText.text = "" + turnNumber;
         text.CrossFadeAlpha(0.0f, 2.0f, false);
 
-        puppets = new ArrayList(6);
-        buildings = new ArrayList();
+        if (firstPlay == false)
+        {
+            firstPlay = true;
+            food = 100;
+            buildingMaterials = 125;
+            money = 50;
+
+            puppets = new ArrayList(6);
+            buildings = new ArrayList();
+        }
     }
 
     // Update is called once per frame
@@ -57,15 +63,16 @@ public class GameManager : MonoBehaviour
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
             GameManager.PuppetTransport = null;
         }
+
+        foodText.text = "" + food;
+        buildingMaterialsText.text = "" + buildingMaterials;
+        moneyText.text = "" + money;
+        turnNumberText.text = "" + turnNumber;
     }
 
     //Is called when the "End turn" button is pressed.
     public void nextTurn()
     {
-        //Must be checked for certain buildings.
-        setFood(5);
-        setWood(3);
-        setMoney(5);
 
         turnNumber = turnNumber + 1;
         //SaveLoadController.control.turnNumber += 1;
@@ -180,6 +187,7 @@ public class GameManager : MonoBehaviour
         foreach (GameObject puppet in tempPuppets.ToArray())
         {
             PuppetManager puppetManager = puppet.GetComponent<PuppetManager>();
+            puppetManager.notifyPuppetEndTurn();
             if (puppetManager.decreaseHygiene(puppet) == true)
             {
                 removePuppet(puppet);

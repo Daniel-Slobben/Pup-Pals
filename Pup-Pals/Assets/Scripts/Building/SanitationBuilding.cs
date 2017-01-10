@@ -5,13 +5,9 @@ using System;
 public class SanitationBuilding : Building
 {
 
-    public int timeToBuild;
+    public new int timeToBuild;
     public static int woodCost = -24;
-    public int slotsToBuild;
-
-    private int buildProgress; // if this reaches timeToBuild the building is done
-    private int lastTurn;
-    private bool build;
+    public new int slotsToBuild;
 
     private GameObject secondOldestPuppet = null;
     private GameObject oldestPuppet = null;
@@ -25,7 +21,6 @@ public class SanitationBuilding : Building
         puppets = new ArrayList(slots);
 
         buildProgress = 0;
-        lastTurn = gameManager.turnNumber;
 
         GetComponent<SpriteRenderer>().sprite = construction;
     }
@@ -38,34 +33,6 @@ public class SanitationBuilding : Building
         }
         return gameManager.setWood(woodCost);
     }
-    
-    private void sanitizePuppets()
-    {
-        /*
-        foreach(GameObject puppet in puppets)
-        {
-            if (oldestPuppet == null)
-            {
-                oldestPuppet = puppet;
-            }
-            else if (secondOldestPuppet == null)
-            {
-                secondOldestPuppet = puppet;
-            }
-            else if (puppet.getAge() > oldestPuppet.getAge())
-            {
-                secondOldestPuppet = oldestPuppet;
-                oldestPuppet = puppet;
-            }
-            else if (puppet.getAge() > secondOldestPuppet.getAge())
-            {
-                secondOldestPuppet = puppet;
-            }
-        }
-        oldestPuppet.sanitize();
-        secondOldestPuppet.sanitize();
-         */
-    }
 
     private void OnDestroy()
     {
@@ -75,23 +42,36 @@ public class SanitationBuilding : Building
         */
     }
 
-    public override void nextTurn()
+    protected override void specialBuildingAction()
     {
-        if (!build && puppets.Count >= slotsToBuild)
+        Debug.Log("Puppet is getting washed");
+        foreach (GameObject puppet in puppets)
         {
-            buildProgress += 1;
-            if (buildProgress >= timeToBuild)
+            PuppetManager puppetScript = puppet.GetComponent<PuppetManager>();
+            PuppetManager oldestPuppetScript = oldestPuppet.GetComponent<PuppetManager>();
+            PuppetManager secondOldestPuppetScript = secondOldestPuppet.GetComponent<PuppetManager>();
+
+            if (oldestPuppet == null)
             {
-                build = true;
-                changeAnimationTobuild();
+                oldestPuppet = puppet;
+            }
+            else if (secondOldestPuppet == null)
+            {
+                secondOldestPuppet = puppet;
+            }
+            else if (puppetScript.getAge() > oldestPuppetScript.getAge())
+            {
+                secondOldestPuppet = oldestPuppet;
+                oldestPuppet = puppet;
+            }
+            else if (puppetScript.getAge() > secondOldestPuppetScript.getAge())
+            {
+                secondOldestPuppet = puppet;
             }
         }
-        
-        if (build)
-        {
-            // decrease hygiene here.
-            sanitizePuppets();
-        }
-        lastTurn = gameManager.turnNumber;
+        PuppetManager oldestPuppetScriptFinal = oldestPuppet.GetComponent<PuppetManager>();
+        PuppetManager secondOldestPuppetScriptFinal = secondOldestPuppet.GetComponent<PuppetManager>();
+        oldestPuppetScriptFinal.sanitize();
+        secondOldestPuppetScriptFinal.sanitize();
     }
 }

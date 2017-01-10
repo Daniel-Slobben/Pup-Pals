@@ -4,14 +4,10 @@ using System;
 
 public class School : Building {
 
-    public int timeToBuild;
+    public new int timeToBuild;
     public static int woodCost = -32;
-    public int slotsToBuild;
+    public new int slotsToBuild;
     public int timeToSchool;
-
-    private int buildProgress; // if this reaches timeToBuild the building is done
-    private int lastTurn;
-    private bool build;
 
     // Use this for initialization
     // this building is not finished yet. In the start function it should make the animation change to construction animation
@@ -22,7 +18,6 @@ public class School : Building {
         puppets = new ArrayList(slots);
 
         buildProgress = 0;
-        lastTurn = gameManager.turnNumber;
 
         GetComponent<SpriteRenderer>().sprite = construction;
     }
@@ -35,37 +30,17 @@ public class School : Building {
         return gameManager.setWood(woodCost);
     }
 
-    private void schoolPuppets()
+    protected override void specialBuildingAction()
     {
-        /*
         foreach (GameObject puppet in puppets)
         {
-            puppet.timeInSchool++;
-            if (puppet.timeInSchool > timeToSchool)
+            PuppetManager puppetScript = puppet.GetComponent<PuppetManager>();
+            puppetScript.timeInSchool++;
+            if (puppetScript.timeInSchool > timeToSchool)
             {
-                puppet.school();
+                puppetScript.school();
             }
         }
-        */
-    }
-
-    public override void nextTurn()
-    {
-        if (!build && puppets.Count >= slotsToBuild)
-        {
-            buildProgress += 1;
-            if (buildProgress >= timeToBuild)
-            {
-                build = true;
-                changeAnimationTobuild();
-            }
-        }        
-        if (build)
-        {
-            // decrease hygiene here.
-            schoolPuppets();
-        }
-        lastTurn = gameManager.turnNumber;
     }
 }
 
