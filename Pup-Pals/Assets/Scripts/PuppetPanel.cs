@@ -4,6 +4,7 @@ using System.Collections;
 public class PuppetPanel : MonoBehaviour {
 
     public GameObject puppetSlot;
+    public int slotId;
 
 	// Use this for initialization
 	void Start () {
@@ -20,5 +21,14 @@ public class PuppetPanel : MonoBehaviour {
         Cursor.SetCursor(puppetSlot.GetComponent<SpriteRenderer>().sprite.texture, Vector2.zero, CursorMode.Auto);
         GameManager.PuppetTransport = puppetSlot;
         Debug.Log("cursor should be set");
+    }
+
+    //Does nothing
+    public void checkGameObject()
+    {
+        if (puppetSlot == null)
+        {
+
+        }   
     }
 }
