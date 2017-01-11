@@ -14,12 +14,15 @@ public abstract class Building : MonoBehaviour
     public int buildProgress;
     public int timeToBuild;
 
+    public bool firstTry;
+
     public string buildingName;
 
     // Use this for initialization
     protected void Start()
     {
         Debug.Log("atleast i tried");
+
         gameManager = (GameManager)GameObject.FindGameObjectWithTag("GameController").GetComponent(typeof(GameManager));
         gameManager.addBuilding(this);
     }

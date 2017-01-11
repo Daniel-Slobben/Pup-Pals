@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public int money;
     public int turnNumber;
 
-    public ArrayList puppets;
+    public List<GameObject> puppets;
     public List<GameObject> puppetSlots;
 
     public static GameObject PuppetTransport;
@@ -50,9 +50,11 @@ public class GameManager : MonoBehaviour
             buildingMaterials = 125;
             money = 50;
 
-            puppets = new ArrayList(6);
+            puppets = new List<GameObject>(6);
             buildings = new ArrayList();
         }
+
+        Invoke("checkSlots", 1);
     }
 
     // Update is called once per frame
@@ -91,7 +93,7 @@ public class GameManager : MonoBehaviour
             PuppetManager puppetManager = newPuppet.GetComponent<PuppetManager>();
             puppetManager.puppetId = puppetId;
 
-            puppetSlots[puppetId].SetActive(true);
+            //puppetSlots[puppetId].SetActive(true);
             PuppetPanel slotScript = (PuppetPanel)puppetSlots[puppetId].GetComponent(typeof(PuppetPanel));
             slotScript.puppetSlot = newPuppet;
             puppets.Add(newPuppet);
@@ -110,7 +112,7 @@ public class GameManager : MonoBehaviour
             if (puppetToRemove == puppet)
             {
                 PuppetManager puppetManager = puppet.GetComponent<PuppetManager>();
-                puppetSlots[puppetManager.puppetId].SetActive(false);
+                //Change slot icon to empty
                 puppets.Remove(puppetToRemove);
                 Destroy(puppet);
                 return;
@@ -178,9 +180,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void updatePuppets(ArrayList puppets)
+    public void updatePuppets(List<GameObject> puppets)
     {
-        ArrayList tempPuppets;
+        List<GameObject> tempPuppets;
         tempPuppets = puppets;
 
 
@@ -209,4 +211,19 @@ public class GameManager : MonoBehaviour
         }
         return 0;
     }
+
+
+    public void checkSlots()
+    {
+        foreach(GameObject puppet in puppets)
+        {
+            Debug.Log("ik zit nu in de foreach");
+            PuppetManager puppetManager = puppet.GetComponent<PuppetManager>();
+            GameObject slot = puppetSlots[puppetManager.puppetId];
+            PuppetPanel puppetPanelScript = slot.GetComponent<PuppetPanel>();
+            puppetPanelScript.puppetSlot = puppet;
+
+        }
+    }
+
 }

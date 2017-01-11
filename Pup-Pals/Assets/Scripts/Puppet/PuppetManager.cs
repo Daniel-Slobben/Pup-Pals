@@ -18,6 +18,8 @@ public class PuppetManager : MonoBehaviour
     public bool sanitized;
     public bool schooled;
 
+    public Sprite cursor;
+
     public int timeInSchool;
 
     public GameManager gameManager;
@@ -31,6 +33,7 @@ public class PuppetManager : MonoBehaviour
         surname = nameGenerator.generateSurname();
         hygiene = 100;
 
+        GetComponent<SpriteRenderer>().sprite = cursor;
         gameManager = (GameManager)GameObject.FindGameObjectWithTag("GameController").GetComponent(typeof(GameManager));
 
     }
