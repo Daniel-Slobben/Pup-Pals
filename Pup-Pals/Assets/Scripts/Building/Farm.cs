@@ -19,8 +19,6 @@ public class Farm : Building
 
         puppets = new ArrayList(slots);
 
-        GetComponent<SpriteRenderer>().sprite = construction;
-
         buildProgress = 0;
     }
     public override bool cost()

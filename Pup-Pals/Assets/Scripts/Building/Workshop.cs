@@ -21,8 +21,6 @@ public class Workshop : Building {
         puppets = new ArrayList(slots);
 
         buildProgress = 0;
-
-        GetComponent<SpriteRenderer>().sprite = construction;
     }
 
     public override bool cost()
