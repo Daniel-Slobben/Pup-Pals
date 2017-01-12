@@ -9,7 +9,7 @@ public class Farm : Building
     public static int woodCost = -12;
     public new int slotsToBuild;
     public int foodPerPuppet;
-    
+
     // Use this for initialization
     new void Start()
     {
@@ -18,8 +18,6 @@ public class Farm : Building
         Debug.Log("money cost" + gameManager.buildingMaterials);
 
         puppets = new ArrayList(slots);
-
-        GetComponent<SpriteRenderer>().sprite = construction;
 
         buildProgress = 0;
     }

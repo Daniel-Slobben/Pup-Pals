@@ -9,19 +9,29 @@ public abstract class Building : MonoBehaviour
     public ArrayList puppets;
     public Sprite construction;
     public Sprite building;
+    public Sprite currentSprite;
     public bool build;
     public int slotsToBuild;
     public int buildProgress;
     public int timeToBuild;
+
+    public bool firstTry;
 
     public string buildingName;
 
     // Use this for initialization
     protected void Start()
     {
+        if (!firstTry)
+        {
+            firstTry = true;
+            currentSprite = construction;
+        }
         Debug.Log("atleast i tried");
+
         gameManager = (GameManager)GameObject.FindGameObjectWithTag("GameController").GetComponent(typeof(GameManager));
         gameManager.addBuilding(this);
+        GetComponent<SpriteRenderer>().sprite = currentSprite;
     }
 
     // Update is called once per frame
@@ -39,6 +49,10 @@ public abstract class Building : MonoBehaviour
         if (puppets.Count < slots && !puppetScript.busy)
         {
             puppetScript.busy = true;
+            if (build)
+            {
+                puppetScript.occupation = this;
+            }            
             puppets.Add(puppet);            
         }
         else
@@ -67,6 +81,7 @@ public abstract class Building : MonoBehaviour
     protected void changeAnimationTobuild()
     {
         GetComponent<SpriteRenderer>().sprite = building;
+        currentSprite = building;
     }
     public abstract bool cost();
     public void nextTurn()
@@ -92,7 +107,7 @@ public abstract class Building : MonoBehaviour
         foreach (GameObject puppet in puppets)
         {
             PuppetManager puppetScript = puppet.GetComponent<PuppetManager>();
-            puppetScript.occupation = buildingName;
+            puppetScript.occupation = this;
         }
     }
 

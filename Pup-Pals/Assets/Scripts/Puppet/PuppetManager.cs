@@ -11,12 +11,14 @@ public class PuppetManager : MonoBehaviour
     public int puppetId;
 
     public bool busy;
-    public string occupation;
+    public Building occupation;
     public int age;
 
     // status effects
     public bool sanitized;
     public bool schooled;
+
+    public Sprite cursor;
 
     public int timeInSchool;
 
@@ -31,6 +33,7 @@ public class PuppetManager : MonoBehaviour
         surname = nameGenerator.generateSurname();
         hygiene = 100;
 
+        GetComponent<SpriteRenderer>().sprite = cursor;
         gameManager = (GameManager)GameObject.FindGameObjectWithTag("GameController").GetComponent(typeof(GameManager));
 
     }
@@ -45,21 +48,25 @@ public class PuppetManager : MonoBehaviour
     {
         Debug.Log("Puppet getting notified");
         age++;
-        switch(occupation)
+
+        if (occupation != null)
         {
-            case "farm":
-                gameManager.setFood(4);
-                break;
-            case "workshop":
-                gameManager.setWood(4);
-                break;
-            case "sanitation":
-                // should have been handled in the building itself
-                break;
-            case "school":
-                // should have been handled in the building itself
-                break;
-        }
+            switch (occupation.buildingName)
+            {
+                case "farm":
+                    gameManager.setFood(4);
+                    break;
+                case "workshop":
+                    gameManager.setWood(4);
+                    break;
+                case "sanitation":
+                    // should have been handled in the building itself
+                    break;
+                case "school":
+                    // should have been handled in the building itself
+                    break;
+            }
+        }        
     }
 
     public bool decreaseHygiene(GameObject puppet)
@@ -73,6 +80,13 @@ public class PuppetManager : MonoBehaviour
         }
         return false;
     }
+
+    void OnDestroy()
+    {
+        occupation.removePuppet(gameObject);
+    }
+
+    
 
     public int getAge()
     {
