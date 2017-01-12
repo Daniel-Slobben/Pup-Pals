@@ -64,6 +64,7 @@
      <Compile Include="Assets\Scripts\SaveLoadScripts\LoadSavePlayer.cs" />
      <Compile Include="Assets\Scripts\SaveLoadScripts\SaveLoadController.cs" />
      <Compile Include="Assets\Scripts\SaveLoadScripts\SetPlayer.cs" />
+     <Compile Include="Assets\Scripts\SaveLoadScripts\deleteSaveFile.cs" />
      <Compile Include="Assets\Scripts\SaveLoadScripts\loadSaveInfo.cs" />
      <Compile Include="Assets\Scripts\SceneManager.cs" />
      <Compile Include="Assets\Scripts\ToggleMenu.cs" />

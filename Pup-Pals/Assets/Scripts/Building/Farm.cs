@@ -9,7 +9,7 @@ public class Farm : Building
     public static int woodCost = -12;
     public new int slotsToBuild;
     public int foodPerPuppet;
-    
+
     // Use this for initialization
     new void Start()
     {
