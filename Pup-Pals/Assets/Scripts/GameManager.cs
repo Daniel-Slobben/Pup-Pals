@@ -188,9 +188,8 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject puppet in tempPuppets.ToArray())
         {
-            PuppetManager puppetManager = puppet.GetComponent<PuppetManager>();
-            puppetManager.notifyPuppetEndTurn();
-            if (puppetManager.decreaseHygiene(puppet) == true)
+            PuppetManager puppetManager = puppet.GetComponent<PuppetManager>();            
+            if (puppetManager.notifyPuppetEndTurn())
             {
                 removePuppet(puppet);
             }

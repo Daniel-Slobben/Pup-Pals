@@ -8,10 +8,7 @@ public class SanitationBuilding : Building
     public new int timeToBuild;
     public static int woodCost = -24;
     public new int slotsToBuild;
-
-    private GameObject secondOldestPuppet = null;
-    private GameObject oldestPuppet = null;
-
+    
     // Use this for initialization
     // this building is not finished yet. In the start function it should make the animation change to construction animation
     new void Start()
@@ -35,20 +32,35 @@ public class SanitationBuilding : Building
 
     private void OnDestroy()
     {
-        /*
-        oldestPuppet.removeSanitize();
-        secondOldestPuppet.removeSanitize();
-        */
+        foreach(GameObject puppet in puppets)
+        {
+            PuppetManager script = puppet.GetComponent<PuppetManager>();
+            script.sanitized = false;
+        }
     }
 
     protected override void specialBuildingAction()
     {
         Debug.Log("Puppet is getting washed");
+
+
+        GameObject secondOldestPuppet = null;
+        GameObject oldestPuppet = null;
+
         foreach (GameObject puppet in puppets)
         {
             PuppetManager puppetScript = puppet.GetComponent<PuppetManager>();
-            PuppetManager oldestPuppetScript = oldestPuppet.GetComponent<PuppetManager>();
-            PuppetManager secondOldestPuppetScript = secondOldestPuppet.GetComponent<PuppetManager>();
+            PuppetManager oldestPuppetScript = null;
+            PuppetManager secondOldestPuppetScript = null;
+
+            if (oldestPuppet != null)
+            {
+                oldestPuppetScript = oldestPuppet.GetComponent<PuppetManager>();
+            }
+            if (secondOldestPuppet != null)
+            {
+                secondOldestPuppetScript = secondOldestPuppet.GetComponent<PuppetManager>();
+            }            
 
             if (oldestPuppet == null)
             {
@@ -68,9 +80,17 @@ public class SanitationBuilding : Building
                 secondOldestPuppet = puppet;
             }
         }
-        PuppetManager oldestPuppetScriptFinal = oldestPuppet.GetComponent<PuppetManager>();
-        PuppetManager secondOldestPuppetScriptFinal = secondOldestPuppet.GetComponent<PuppetManager>();
-        oldestPuppetScriptFinal.sanitize();
-        secondOldestPuppetScriptFinal.sanitize();
+
+        if (oldestPuppet != null)
+        {
+            PuppetManager oldestPuppetScriptFinal = oldestPuppet.GetComponent<PuppetManager>();
+            oldestPuppetScriptFinal.sanitize();
+        }
+        if (secondOldestPuppet != null)
+        {
+            PuppetManager secondOldestPuppetScriptFinal = secondOldestPuppet.GetComponent<PuppetManager>();
+            secondOldestPuppetScriptFinal.sanitize();
+        }
+                
     }
 }
