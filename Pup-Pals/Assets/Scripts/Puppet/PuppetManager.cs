@@ -23,6 +23,7 @@ public class PuppetManager : MonoBehaviour
     public bool sanitized;
     public bool schooled;
     public bool sick;
+    public bool muddy;
 
     public Sprite cursor;
 
@@ -54,7 +55,6 @@ public class PuppetManager : MonoBehaviour
      */
     public bool notifyPuppetEndTurn()
     {
-        Debug.Log("Puppet getting notified");
 
         if (makePuppetsDie())
         {
@@ -99,35 +99,35 @@ public class PuppetManager : MonoBehaviour
 
     private void applySickness()
     {
-        int randomNumber = Random.Range(0, 10);
+        int randomNumber = Random.Range(1, 10);
         if (hygiene == 0)
         {
             sick = true;
         }
         else if (hygiene <= 10)
         {
-            if (randomNumber < 8)
+            if (randomNumber <= 8)
             {
                 sick = true;
             }
         }
         else if (hygiene <= 20)
         {
-            if (randomNumber < 5)
+            if (randomNumber <= 5)
             {
                 sick = true;
             }
         }
         else if (hygiene <= 30)
         {
-            if (randomNumber < 3)
+            if (randomNumber <= 3)
             {
                 sick = true;
             }
         }
         else if (hygiene <= 40)
         {
-            if (randomNumber < 1)
+            if (randomNumber == 1)
             {
                 sick = true;
             }
@@ -183,7 +183,10 @@ public class PuppetManager : MonoBehaviour
 
     void OnDestroy()
     {
-        occupation.removePuppet(gameObject);
+        if (occupation != null)
+        {
+            occupation.removePuppet(gameObject);
+        }        
     }
     
     public int getAge()
