@@ -94,11 +94,11 @@ public abstract class Building : MonoBehaviour
                 build = true;
                 changeAnimationTobuild();
                 setOccupation();
-            }
-            if (build)
-            {
-                specialBuildingAction();
-            }
+            }            
+        }
+        if (build)
+        {
+            specialBuildingAction();
         }
     }
 

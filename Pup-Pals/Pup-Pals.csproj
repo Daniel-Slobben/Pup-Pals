@@ -82,6 +82,8 @@
     <Compile Include="Assets\Scripts\BuildingPlot\Icon.cs" />
     <Compile Include="Assets\Scripts\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\Collider2DRaycastFilter.cs" />
+    <Compile Include="Assets\Scripts\DestroyEventPanel.cs" />
+    <Compile Include="Assets\Scripts\Events.cs" />
     <Compile Include="Assets\Scripts\FadingText.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\PanelManager\ToggleButton.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="Assets\Scripts\SaveLoadScripts\LoadSavePlayer.cs" />
     <Compile Include="Assets\Scripts\SaveLoadScripts\SaveLoadController.cs" />
     <Compile Include="Assets\Scripts\SaveLoadScripts\SetPlayer.cs" />
+    <Compile Include="Assets\Scripts\SaveLoadScripts\deleteSaveFile.cs" />
     <Compile Include="Assets\Scripts\SaveLoadScripts\loadSaveInfo.cs" />
     <Compile Include="Assets\Scripts\SceneManager.cs" />
     <Compile Include="Assets\Scripts\ToggleMenu.cs" />
