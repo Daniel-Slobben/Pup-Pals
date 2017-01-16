@@ -21,6 +21,11 @@ public class GameManager : MonoBehaviour
 
     public bool firstPlay;
 
+    public GameObject GUI;
+    public GameObject eventPanel;
+
+    private Events events;
+
     Text foodText;
     Text buildingMaterialsText;
     Text moneyText;
@@ -30,9 +35,9 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        events = new Events(this);
 
         text = GameObject.Find("WelcomeText").GetComponent<Text>();
-
 
         foodText = GameObject.Find("FoodValue").GetComponent<Text>();
         buildingMaterialsText = GameObject.Find("BuildMatsValue").GetComponent<Text>();
@@ -80,11 +85,10 @@ public class GameManager : MonoBehaviour
     {
 
         turnNumber = turnNumber + 1;
-        //SaveLoadController.control.turnNumber += 1;
         turnNumberText.text = "" + turnNumber;
 
-
         createMissionScript.generateMission();
+        events.rollEvent();
 
         notifyBuildingOfNextTurn();
         updatePuppets(puppets);
@@ -164,14 +168,12 @@ public class GameManager : MonoBehaviour
         foreach (Building building in buildings)
         {
             building.nextTurn();
-            Debug.Log("Notifying buildings of next turn");
         }
     }
 
     public void addBuilding(Building building)
     {
         buildings.Add(building);
-        Debug.Log("Added building to the game manager");
     }
 
     public void removeBuilding(Building buildingToRemove)
@@ -194,9 +196,8 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject puppet in tempPuppets.ToArray())
         {
-            PuppetManager puppetManager = puppet.GetComponent<PuppetManager>();
-            puppetManager.notifyPuppetEndTurn();
-            if (puppetManager.decreaseHygiene(puppet) == true)
+            PuppetManager puppetManager = puppet.GetComponent<PuppetManager>();            
+            if (puppetManager.notifyPuppetEndTurn())
             {
                 removePuppet(puppet);
             }
@@ -223,7 +224,6 @@ public class GameManager : MonoBehaviour
     {
         foreach (GameObject puppet in puppets)
         {
-            Debug.Log("ik zit nu in de foreach");
             PuppetManager puppetManager = puppet.GetComponent<PuppetManager>();
             GameObject slot = puppetSlots[puppetManager.puppetId];
             PuppetPanel puppetPanelScript = slot.GetComponent<PuppetPanel>();
@@ -231,5 +231,14 @@ public class GameManager : MonoBehaviour
 
         }
     }
-
+    public void showEventPanel(string text)
+    {
+        GameObject panel = Instantiate(eventPanel);
+        panel.transform.parent = GUI.transform;
+        Vector2 position = new Vector2(410.3499f, -38);
+        panel.GetComponent<RectTransform>().anchoredPosition = position;
+        GameObject panelChild = panel.transform.GetChild(0).gameObject;
+        panelChild.GetComponent<Text>().text = text;
+        panel.SetActive(true);
+    }
 }
