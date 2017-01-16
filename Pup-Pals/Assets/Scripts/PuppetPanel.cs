@@ -1,13 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PuppetPanel : MonoBehaviour {
 
     public GameObject puppetSlot;
     public int slotId;
 
-	// Use this for initialization
-	void Start () {
+    public Sprite puppetSprite;
+    public Sprite emptySprite;
+
+    public Sprite farmSprite;
+    public Sprite workshopSprite;
+    public Sprite schoolSprite;
+    public Sprite sanitationSprite;
+
+    public Sprite healthyPuppet;
+    public Sprite unhealthyPuppet;
+
+    public GameObject occupationIcon;
+    public GameObject healthIcon;
+
+
+    // Use this for initialization
+    void Start () {
 
         
 
@@ -15,6 +31,7 @@ public class PuppetPanel : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        updateSlot();
     }
 
     public void ifClicked()
@@ -30,5 +47,54 @@ public class PuppetPanel : MonoBehaviour {
         if (puppetSlot == null)
         {
         }   
+    }
+
+    private void updateSlot()
+    {
+        if (puppetSlot != null)
+        {
+            healthIcon.SetActive(true);
+            PuppetManager puppetScript = puppetSlot.GetComponent<PuppetManager>();
+            GetComponent<Image>().sprite = puppetSprite;
+
+            if (puppetScript.occupation != null)
+            {
+                occupationIcon.SetActive(true);
+                switch (puppetScript.occupation.buildingName)
+                {
+                    case "farm":
+                        occupationIcon.GetComponent<Image>().sprite = farmSprite;
+                        break;
+                    case "workshop":
+                        occupationIcon.GetComponent<Image>().sprite = workshopSprite;
+                        break;
+                    case "sanitation":
+                        occupationIcon.GetComponent<Image>().sprite = sanitationSprite;
+                        break;
+                    case "school":
+                        occupationIcon.GetComponent<Image>().sprite = schoolSprite;
+                        break;
+                }
+            }
+            else if(puppetScript.busy)
+            {
+                // puppet is probably on a mission
+            }
+            if (puppetScript.sick)
+            {
+                healthIcon.GetComponent<Image>().sprite = unhealthyPuppet;
+            }
+            else
+            {
+                healthIcon.GetComponent<Image>().sprite = healthyPuppet;
+            }
+        }
+        else
+        {
+            GetComponent<Image>().sprite = emptySprite;
+            healthIcon.SetActive(false);
+            occupationIcon.SetActive(false);
+        }
+        
     }
 }
