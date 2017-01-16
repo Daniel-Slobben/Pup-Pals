@@ -34,6 +34,6 @@ public class Workshop : Building {
 
     protected override void specialBuildingAction()
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 }
