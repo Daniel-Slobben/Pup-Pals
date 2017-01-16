@@ -86,6 +86,8 @@
     <Compile Include="Assets\Scripts\Events.cs" />
     <Compile Include="Assets\Scripts\FadingText.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Missions\CreateMissions.cs" />
+    <Compile Include="Assets\Scripts\Missions\missionInfo.cs" />
     <Compile Include="Assets\Scripts\PanelManager\ToggleButton.cs" />
     <Compile Include="Assets\Scripts\Puppet\NameGenerator.cs" />
     <Compile Include="Assets\Scripts\Puppet\PuppetManager.cs" />

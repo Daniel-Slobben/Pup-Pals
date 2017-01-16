@@ -32,6 +32,6 @@ public class Farm : Building
 
     protected override void specialBuildingAction()
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 }
