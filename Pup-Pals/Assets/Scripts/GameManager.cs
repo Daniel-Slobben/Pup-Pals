@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> puppetSlots;
 
     public static GameObject PuppetTransport;
+    CreateMissions createMissionScript;
 
     public ArrayList buildings;
 
@@ -37,6 +38,8 @@ public class GameManager : MonoBehaviour
         buildingMaterialsText = GameObject.Find("BuildMatsValue").GetComponent<Text>();
         moneyText = GameObject.Find("MoneyValue").GetComponent<Text>();
         turnNumberText = GameObject.Find("TurnValue").GetComponent<Text>();
+
+        createMissionScript = gameObject.GetComponent<CreateMissions>();
 
         int playerIdentity = SaveLoadController.control.getPlayerIdentity();
         text.GetComponentInChildren<Text>().text = SaveLoadController.control.getPlayerName(playerIdentity) + "'s village";
@@ -79,6 +82,9 @@ public class GameManager : MonoBehaviour
         turnNumber = turnNumber + 1;
         //SaveLoadController.control.turnNumber += 1;
         turnNumberText.text = "" + turnNumber;
+
+
+        createMissionScript.generateMission();
 
         notifyBuildingOfNextTurn();
         updatePuppets(puppets);
@@ -200,14 +206,14 @@ public class GameManager : MonoBehaviour
 
     public int findEmptyPuppetSlot()
     {
-        foreach(GameObject slot in puppetSlots)
+        foreach (GameObject slot in puppetSlots)
         {
             PuppetPanel puppetPanel = slot.GetComponent<PuppetPanel>();
             if (puppetPanel.puppetSlot == null)
             {
                 return puppetPanel.slotId;
             }
-            
+
         }
         return 0;
     }
@@ -215,7 +221,7 @@ public class GameManager : MonoBehaviour
 
     public void checkSlots()
     {
-        foreach(GameObject puppet in puppets)
+        foreach (GameObject puppet in puppets)
         {
             Debug.Log("ik zit nu in de foreach");
             PuppetManager puppetManager = puppet.GetComponent<PuppetManager>();

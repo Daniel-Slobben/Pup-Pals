@@ -23,15 +23,12 @@ public class ToggleButton : MonoBehaviour
             GameObject oldPanel = panels[0];
             if (oldPanel.name == panel.name)
             {
-                Debug.Log("Same panel found! Trying to close it..");
             }
             else
             {
-                Debug.Log("Other panel found! closing old panel..");
                 oldPanel.SetActive(false);
             }
         }
-
         panel.SetActive(!panel.activeSelf);
     }
 
