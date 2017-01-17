@@ -12,6 +12,7 @@ public class PuppetManager : MonoBehaviour
 
     public bool busy;
     public Building occupation;
+    public Building working;
     public int age;
 
     // balance numbers
@@ -236,12 +237,26 @@ public class PuppetManager : MonoBehaviour
 
     void OnDestroy()
     {
+        removeAllActivities();
+    }
+
+    public void removeAllActivities()
+    {
+        Debug.Log("removed pupppet activiuty");
         if (occupation != null)
         {
             occupation.removePuppet(gameObject);
-        }        
+            occupation = null;
+            working = null;
+        }
+        else if (working != null)
+        {
+            working.removePuppet(gameObject);
+            occupation = null;
+            working = null;
+        }
     }
-    
+
     public int getAge()
     {
         return age;

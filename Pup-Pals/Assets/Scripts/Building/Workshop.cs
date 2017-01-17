@@ -5,10 +5,8 @@ using System;
 public class Workshop : Building {
 
     public Sprite workshop;
-
-    public new int timeToBuild;
+    
     public static int woodCost = -12;
-    public new int slotsToBuild;
     public int woodPerPuppet;
     public float hygieneDecrease;
 
