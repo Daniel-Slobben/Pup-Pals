@@ -32,10 +32,17 @@ public class PuppetManager : MonoBehaviour
 
     public GameManager gameManager;
 
+    public bool onMission;
+    public int missionDuration;
+    public int missionReward;
+    public int missionRisk;
+    public int missionType;
+
     // Use this for initialization
     void Start()
     {
 
+        onMission = false;
         nameGenerator = new NameGenerator();
         firstName = nameGenerator.generateName();
         surname = nameGenerator.generateSurname();
@@ -180,6 +187,52 @@ public class PuppetManager : MonoBehaviour
         }
         
         return hygieneToDecrease;
+    }
+
+    public void startMission(int duration, int risk, int reward, int type)
+    {
+        if(onMission == true)
+        {
+            missionType = type;
+            missionReward = reward;
+            missionRisk = risk;
+            missionDuration = duration;
+        }
+    }
+
+    public void checkMissionStatus()
+    {
+        missionDuration--;
+        if (missionDuration == 0)
+        {
+            onMission = false;
+            busy = false;
+            int rng = Random.Range(40, 100 - 1);
+            if(rng <= missionRisk)
+            {
+                switch (missionType)
+                {
+                    case 1:
+                        gameManager.setFood(missionReward);
+                        gameManager.showEventPanel("A mission succeeded! You have earned " + missionReward + " food!");
+                        break;
+                    case 2:
+                        gameManager.setWood(missionReward);
+                        gameManager.showEventPanel("A mission succeeded! You have earned " + missionReward + " wood!");
+                        break;
+                    case 3:
+                        gameManager.setMoney(missionReward);
+                        gameManager.showEventPanel("A mission succeeded! You have earned " + missionReward + " gold!");
+                        break;
+                }
+                
+            }
+            else
+            {
+                gameManager.showEventPanel("A mission failed");
+            }
+
+        }
     }
 
     void OnDestroy()

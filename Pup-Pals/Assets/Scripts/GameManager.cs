@@ -86,12 +86,22 @@ public class GameManager : MonoBehaviour
 
         turnNumber = turnNumber + 1;
         turnNumberText.text = "" + turnNumber;
-
-        createMissionScript.generateMission();
         events.rollEvent();
-
         notifyBuildingOfNextTurn();
         updatePuppets(puppets);
+
+        if (turnNumber % 3 == 0)
+        {
+            createMissionScript.generateMission();
+        }
+
+        foreach (GameObject puppet in puppets)
+        {
+            if(puppet.GetComponent<PuppetManager>().onMission == true)
+            {
+                puppet.GetComponent<PuppetManager>().checkMissionStatus();
+            }
+        }
     }
 
     public void addPuppet(GameObject puppet)
