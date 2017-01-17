@@ -4,10 +4,8 @@ using System;
 
 public class SanitationBuilding : Building
 {
-
-    public new int timeToBuild;
+    
     public static int woodCost = -24;
-    public new int slotsToBuild;
     
     // Use this for initialization
     // this building is not finished yet. In the start function it should make the animation change to construction animation

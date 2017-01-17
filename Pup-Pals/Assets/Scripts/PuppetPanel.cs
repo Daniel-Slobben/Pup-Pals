@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
-public class PuppetPanel : MonoBehaviour {
+
+public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+{
 
     public GameObject puppetSlot;
     public int slotId;
@@ -21,16 +25,16 @@ public class PuppetPanel : MonoBehaviour {
     public GameObject occupationIcon;
     public GameObject healthIcon;
 
+    public bool isOver = false;
+
+
 
     // Use this for initialization
     void Start () {
-
-        
-
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
         updateSlot();
     }
 
@@ -40,7 +44,7 @@ public class PuppetPanel : MonoBehaviour {
         GameManager.PuppetTransport = puppetSlot;
         Debug.Log("cursor should be set");
     }
-
+    
     //Does nothing
     public void checkGameObject()
     {
@@ -51,11 +55,23 @@ public class PuppetPanel : MonoBehaviour {
 
     private void updateSlot()
     {
+
         if (puppetSlot != null)
         {
             healthIcon.SetActive(true);
             PuppetManager puppetScript = puppetSlot.GetComponent<PuppetManager>();
             GetComponent<Image>().sprite = puppetSprite;
+
+            if (isOver)
+            { 
+                if (Input.GetMouseButtonDown(1))
+                {
+                    if (puppetSlot != null)
+                    {
+                        puppetScript.removeAllActivities();
+                    }
+                }
+            }
 
             if (puppetScript.occupation != null)
             {
@@ -80,6 +96,10 @@ public class PuppetPanel : MonoBehaviour {
             {
                 // puppet is probably on a mission
             }
+            else
+            {
+                occupationIcon.SetActive(false);
+            }
             if (puppetScript.sick)
             {
                 healthIcon.GetComponent<Image>().sprite = unhealthyPuppet;
@@ -96,5 +116,15 @@ public class PuppetPanel : MonoBehaviour {
             occupationIcon.SetActive(false);
         }
         
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        isOver = true;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        isOver = false;
     }
 }

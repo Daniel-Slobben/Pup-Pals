@@ -49,6 +49,7 @@ public abstract class Building : MonoBehaviour
         if (puppets.Count < slots && !puppetScript.busy)
         {
             puppetScript.busy = true;
+            puppetScript.working = this;
             if (build)
             {
                 puppetScript.occupation = this;
@@ -88,6 +89,9 @@ public abstract class Building : MonoBehaviour
     {
         if (!build && puppets.Count >= slotsToBuild)
         {
+            Debug.Log("Building progress was made!");
+            Debug.Log("The puppet were: " + puppets.Count);
+            Debug.Log("The slotstoBuikld isL: " + slotsToBuild);
             buildProgress += 1;
             if (buildProgress >= timeToBuild)
             {

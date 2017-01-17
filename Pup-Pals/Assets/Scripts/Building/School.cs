@@ -3,10 +3,8 @@ using System.Collections;
 using System;
 
 public class School : Building {
-
-    public new int timeToBuild;
+    
     public static int woodCost = -32;
-    public new int slotsToBuild;
     public int timeToSchool;
 
     // Use this for initialization

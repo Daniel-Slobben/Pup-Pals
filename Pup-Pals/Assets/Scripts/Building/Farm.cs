@@ -4,10 +4,8 @@ using System;
 
 public class Farm : Building
 {
-
-    public new int timeToBuild;
+    
     public static int woodCost = -12;
-    public new int slotsToBuild;
     public int foodPerPuppet;
 
     // Use this for initialization
