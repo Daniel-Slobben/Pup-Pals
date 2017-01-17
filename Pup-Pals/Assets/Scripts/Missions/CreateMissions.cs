@@ -4,12 +4,22 @@ using UnityEngine.UI;
 
 public class CreateMissions : MonoBehaviour
 {
-    public ArrayList missionDetails;
-    public string missionName;
-    public string missionDescription;
+    public int missionType1;
+    public string missionName1;
+    public string missionDescription1;
+    public int missionReward1;
+    public int missionDuration1;
+    public int missionRisk1;
+
+    public int missionType2;
+    public string missionName2;
+    public string missionDescription2;
+    public int missionReward2;
+    public int missionDuration2;
+    public int missionRisk2;
+
     public GameObject puppetSlot;
-    public int missionReward;
-    public int succesChance;
+
 
     public void Start()
     {
@@ -18,29 +28,81 @@ public class CreateMissions : MonoBehaviour
 
     public void generateMission()
     {
-        Debug.Log("Creating mission..");
-        missionName = generateMissionName();
-        missionDescription = generateMissionDescription();
-        missionReward = generateReward();
+        missionType1 = generateMissionType();
+        missionName1 = generateMissionName(missionType1);
+        missionDescription1 = generateMissionDescription(missionType1);
+        missionReward1 = generateReward();
+        missionDuration1 = generateMissionDuration();
+        missionRisk1 = generateMissionRisk();
+
+        missionType2 = generateMissionType();
+        missionName2 = generateMissionName(missionType2);
+        missionDescription2 = generateMissionDescription(missionType2);
+        missionReward2 = generateReward();
+        missionDuration2 = generateMissionDuration();
+        missionRisk2 = generateMissionRisk();
     }
 
-    public string generateMissionName()
+    public int generateMissionType()
     {
-        string[] names = new string[] { "Aid another village", "Gathering for food", "Gathering for wood", "Gathering for gold" };
-        return names[Random.Range(0, names.Length - 1)];
+        int roll = Random.Range(1, 100 - 1);
+        if (roll <= 32)
+        {
+            //Food
+            return 1;
+        }
+        if(roll >= 33 && roll <= 66)
+        {
+            //Wood
+            return 2;
+        }
+        if(roll >= 67 && roll <= 99)
+        {
+            //Gold
+            return 3;
+        }
+        return 0;
     }
 
-    public string generateMissionDescription()
+    public string generateMissionName(int type)
     {
-        string[] descriptions = new string[] {
-            "Go and help another village, this will not only help them but it will also help your own village!",
-            "A villager has found a food pile outside the village! Lets go get it!",
-            "A villager has found a wood pile outside the village! Lets go get it",
-            "I villager struck a gold vein! Lets mine it!" };
-        return descriptions[Random.Range(0, descriptions.Length - 1)];
+        switch (type)
+        {
+            case 1:
+                return "Gathering for food";
+            case 2:
+                return "Gathering for wood";
+            case 3:
+                return "Gathering for gold";            
+        }
+        return null;
+    }
+
+    public string generateMissionDescription(int type)
+    {
+        switch (type)
+        {
+            case 1:
+                return "A villager has found a food pile outside the village! Lets go get it!";
+            case 2:
+                return "A villager has found a wood pile outside the village!Lets go get it";
+            case 3:
+                return "A villager struck a gold vein! Lets mine it!";
+        }
+        return null;
     }
     public int generateReward()
     {
-        return Random.Range(0, 100 - 1);
+        return Random.Range(1, 40 - 1);
+    }
+
+    public int generateMissionDuration()
+    {
+        return Random.Range(1, 8 - 1);
+    }
+
+    public int generateMissionRisk()
+    {
+        return Random.Range(40, 90 - 1);
     }
 }
