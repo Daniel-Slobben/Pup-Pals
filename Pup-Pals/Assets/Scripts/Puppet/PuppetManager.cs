@@ -214,22 +214,22 @@ public class PuppetManager : MonoBehaviour
                 {
                     case 1:
                         gameManager.setFood(missionReward);
-                        gameManager.showEventPanel("An mission succeeded! You have earned " + missionReward + " food!");
+                        gameManager.showEventPanel("A mission succeeded! You have earned " + missionReward + " food!");
                         break;
                     case 2:
                         gameManager.setWood(missionReward);
-                        gameManager.showEventPanel("An mission succeeded! You have earned " + missionReward + " wood!");
+                        gameManager.showEventPanel("A mission succeeded! You have earned " + missionReward + " wood!");
                         break;
                     case 3:
                         gameManager.setMoney(missionReward);
-                        gameManager.showEventPanel("An mission succeeded! You have earned " + missionReward + " gold!");
+                        gameManager.showEventPanel("A mission succeeded! You have earned " + missionReward + " gold!");
                         break;
                 }
                 
             }
             else
             {
-                gameManager.showEventPanel("An mission failed");
+                gameManager.showEventPanel("A mission failed");
             }
 
         }
