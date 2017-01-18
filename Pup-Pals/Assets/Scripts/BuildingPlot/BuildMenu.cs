@@ -4,12 +4,13 @@ using System.Collections;
 public class BuildMenu : MonoBehaviour {
     public GameObject buildingPLot;
     public GameObject text;
-    private string info;
+    public string info;
     private BuildingPlot buildingPlotScript;
 
     // Use this for initialization
     void Start () {
         buildingPlotScript = (BuildingPlot)buildingPLot.GetComponent(typeof(BuildingPlot));
+        Invoke("setInfo", 0.1f);
     }
 	
 	// Update is called once per frame
@@ -17,7 +18,7 @@ public class BuildMenu : MonoBehaviour {
 	
 	}
 
-    public void setInfo(string info)
+    public void setInfo()
     {
         if (info == "NotEnoughMoney")
         {
@@ -25,7 +26,6 @@ public class BuildMenu : MonoBehaviour {
         }
         else
         {
-            this.info = info;
             string textToShow = "";
             if (info == "Farm")
             {
@@ -41,7 +41,7 @@ public class BuildMenu : MonoBehaviour {
             }
             if (info == "Sanitation Building")
             {
-                textToShow = info + System.Environment.NewLine + "Cost: " + Mathf.Abs(SanitationBuilding.woodCost);
+                textToShow = "Sanitation" + System.Environment.NewLine + "Cost: " + Mathf.Abs(SanitationBuilding.woodCost);
             }
             text.GetComponent<TextMesh>().text = textToShow;
         }

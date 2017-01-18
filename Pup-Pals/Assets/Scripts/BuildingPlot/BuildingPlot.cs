@@ -77,7 +77,8 @@ public class BuildingPlot : MonoBehaviour {
     {
         menuToggle = true;
         menu.SetActive(true);
-        menuScript.setInfo(icon);
+        menuScript.info = icon;
+        menuScript.setInfo();
     }
 
     public void build(string icon)
@@ -107,7 +108,8 @@ public class BuildingPlot : MonoBehaviour {
         else
         {
             Debug.Log("no monies");
-            menuScript.setInfo("NotEnoughMoney");
+            menuScript.info = "NotEnoughMoney";
+            menuScript.setInfo();
             Destroy(building);
         }
     }

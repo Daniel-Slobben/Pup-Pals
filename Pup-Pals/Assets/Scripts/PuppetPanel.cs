@@ -22,8 +22,12 @@ public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public Sprite healthyPuppet;
     public Sprite unhealthyPuppet;
 
+    public Sprite building;
+    public Sprite onMission;
+
     public GameObject occupationIcon;
     public GameObject healthIcon;
+    public GameObject overImageOccupation;
 
     public bool isOver = false;
 
@@ -94,11 +98,21 @@ public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             }
             else if(puppetScript.busy)
             {
-                // puppet is probably on a mission
+                if (puppetScript.working == null)
+                {
+                    overImageOccupation.SetActive(true);
+                    overImageOccupation.GetComponent<Image>().sprite = onMission;
+                }
+                else
+                {
+                    overImageOccupation.SetActive(true);
+                    overImageOccupation.GetComponent<Image>().sprite = building;
+                }
             }
             else
             {
                 occupationIcon.SetActive(false);
+                overImageOccupation.SetActive(false);
             }
             if (puppetScript.sick)
             {
@@ -114,6 +128,7 @@ public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             GetComponent<Image>().sprite = emptySprite;
             healthIcon.SetActive(false);
             occupationIcon.SetActive(false);
+            overImageOccupation.SetActive(false);
         }
         
     }

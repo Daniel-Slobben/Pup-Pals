@@ -17,8 +17,8 @@ public class CameraMovement : MonoBehaviour {
 
     private float zoom = 5;                 //Standard zoom variable.
     private float zoomSpeed = 0.2f;         //Zoom speed variable.
-    private float zoomMax = 10;             //Max zoom variable.
-    private float zoomMin = 2;              //Min zoom variable.
+    private float zoomMax = 7;             //Max zoom variable.
+    private float zoomMin = 3;              //Min zoom variable.
     
     private Vector3 desiredPosition;
 
