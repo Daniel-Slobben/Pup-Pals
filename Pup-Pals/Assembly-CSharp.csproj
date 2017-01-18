@@ -74,6 +74,7 @@
      <Compile Include="Assets\Scripts\ToggleMenu.cs" />
      <Compile Include="Assets\Scripts\WashingMinigame\WashingManager.cs" />
      <Compile Include="Assets\loadGame.cs" />
+     <Compile Include="Assets\resolveTextSize.cs" />
      <Compile Include="Assets\saveGame.cs" />
      <None Include="Assets\Plugins\OpenUnityTools\unityserializer-ng\license.txt" />
  <Reference Include="UnityEngine.UI">
