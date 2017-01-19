@@ -28,6 +28,7 @@ public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public GameObject occupationIcon;
     public GameObject healthIcon;
     public GameObject overImageOccupation;
+    public GameObject launchPuppetWashing;
 
     public bool isOver = false;
 
@@ -62,6 +63,7 @@ public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         if (puppetSlot != null)
         {
+            launchPuppetWashing.SetActive(true);
             healthIcon.SetActive(true);
             PuppetManager puppetScript = puppetSlot.GetComponent<PuppetManager>();
             GetComponent<Image>().sprite = puppetSprite;
@@ -80,6 +82,7 @@ public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             if (puppetScript.occupation != null)
             {
                 occupationIcon.SetActive(true);
+                overImageOccupation.SetActive(false);
                 switch (puppetScript.occupation.buildingName)
                 {
                     case "farm":
@@ -101,11 +104,13 @@ public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 if (puppetScript.working == null)
                 {
                     overImageOccupation.SetActive(true);
+                    launchPuppetWashing.SetActive(false);
                     overImageOccupation.GetComponent<Image>().sprite = onMission;
                 }
                 else
                 {
                     overImageOccupation.SetActive(true);
+                    launchPuppetWashing.SetActive(false);
                     overImageOccupation.GetComponent<Image>().sprite = building;
                 }
             }

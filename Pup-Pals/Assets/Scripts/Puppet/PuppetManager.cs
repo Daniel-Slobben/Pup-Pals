@@ -254,6 +254,7 @@ public class PuppetManager : MonoBehaviour
     public void removeAllActivities()
     {
         Debug.Log("removed pupppet activiuty");
+        busy = false;
         if (occupation != null)
         {
             occupation.removePuppet(gameObject);

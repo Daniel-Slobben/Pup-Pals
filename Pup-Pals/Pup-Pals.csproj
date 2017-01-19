@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Building\Building.cs" />
     <Compile Include="Assets\Scripts\Building\Farm.cs" />
+    <Compile Include="Assets\Scripts\Building\LaunchWashingScript.cs" />
     <Compile Include="Assets\Scripts\Building\SanitationBuilding.cs" />
     <Compile Include="Assets\Scripts\Building\School.cs" />
     <Compile Include="Assets\Scripts\Building\Workshop.cs" />

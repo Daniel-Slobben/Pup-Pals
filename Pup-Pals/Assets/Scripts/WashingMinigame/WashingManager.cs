@@ -30,7 +30,10 @@ public class WashingManager : MonoBehaviour {
         {
             // The player finished.
             // plz go back to game scene now.
-            Debug.Log("You done boi");
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            LoadSavePlayer loadSavePlayer = GetComponent<LoadSavePlayer>();
+            loadSavePlayer.loadPlayer(SaveLoadController.control.playerIdentity);
+            //Application.LoadLevel("game");
         }
         if (Input.GetMouseButton(0))
         {

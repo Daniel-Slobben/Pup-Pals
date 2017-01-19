@@ -90,7 +90,6 @@ public class SaveLoadController : MonoBehaviour
         Debug.Log("Set player name!");
         this.playerName = playerName;
     }
-
 }
 
 [Serializable]
