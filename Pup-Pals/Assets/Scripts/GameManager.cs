@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject GUI;
     public GameObject eventPanel;
+    public GameObject gameOverScreen;
 
     private Events events;
 
@@ -55,8 +56,8 @@ public class GameManager : MonoBehaviour
         {
             firstPlay = true;
             food = 100;
-            buildingMaterials = 125;
-            money = 50;
+            buildingMaterials = 100;
+            money = 10;
 
             puppets = new List<GameObject>(6);
             buildings = new ArrayList();
@@ -108,15 +109,25 @@ public class GameManager : MonoBehaviour
     {
         if (puppets.Count < 6)
         {
-            int puppetId = findEmptyPuppetSlot();
-            GameObject newPuppet = Instantiate(puppet);
-            PuppetManager puppetManager = newPuppet.GetComponent<PuppetManager>();
-            puppetManager.puppetId = puppetId;
+            if (buildingMaterials >= 20 && food >= 20)
+            {
+                setWood(-20);
+                setFood(-20);
+                int puppetId = findEmptyPuppetSlot();
+                GameObject newPuppet = Instantiate(puppet);
+                PuppetManager puppetManager = newPuppet.GetComponent<PuppetManager>();
+                puppetManager.puppetId = puppetId;
 
-            //puppetSlots[puppetId].SetActive(true);
-            PuppetPanel slotScript = (PuppetPanel)puppetSlots[puppetId].GetComponent(typeof(PuppetPanel));
-            slotScript.puppetSlot = newPuppet;
-            puppets.Add(newPuppet);
+                //puppetSlots[puppetId].SetActive(true);
+                PuppetPanel slotScript = (PuppetPanel)puppetSlots[puppetId].GetComponent(typeof(PuppetPanel));
+                slotScript.puppetSlot = newPuppet;
+                puppets.Add(newPuppet);
+            }
+            else
+            {
+                showEventPanel("You don't have enough resources to create a puppet!");
+            }
+            
         }
         else
         {
@@ -144,6 +155,8 @@ public class GameManager : MonoBehaviour
     {
         if (food + amountOfFood < 0)
         {
+            // game should go dead
+            gameOverScreen.SetActive(true);
             return false;
         }
         food += amountOfFood;
