@@ -15,6 +15,8 @@ public class missionInfo : MonoBehaviour
     public Text missionRiskText;
     public Image missionRewardImage;
     public GameObject missionOverview1;
+    public GameObject missionBusy1;
+    public GameObject rewardIcon1;
 
     public int missionType2;
     public Text missionNameText2;
@@ -24,6 +26,8 @@ public class missionInfo : MonoBehaviour
     public Text missionRiskText2;
     public Image missionRewardImage2;
     public GameObject missionOverview2;
+    public GameObject missionBusy2;
+    public GameObject rewardIcon2;
 
     public Sprite food;
     public Sprite wood;
@@ -53,13 +57,13 @@ public class missionInfo : MonoBehaviour
 
                 //Mission 1
 
-                    missionOverview1 = GameObject.Find("rewardImage1");
+                    rewardIcon1 = GameObject.Find("rewardImage1");
                     missionNameText = GameObject.Find("missionName1").GetComponent<Text>();
                     missionDescriptionText = GameObject.Find("missionDescription1").GetComponent<Text>();
                     rewardText = GameObject.Find("missionReward1").GetComponent<Text>();
                     missionDurationText = GameObject.Find("missionDuration1").GetComponent<Text>();
                     missionRiskText = GameObject.Find("missionRisk1").GetComponent<Text>();
-                    missionRewardImage = missionOverview1.GetComponent<Image>();
+                    missionRewardImage = rewardIcon1.GetComponent<Image>();
 
                     missionType = createMissions.missionType1;
                     missionNameText.text = "" + createMissions.missionName1;
@@ -70,13 +74,13 @@ public class missionInfo : MonoBehaviour
                     missionRewardImage.sprite = translateMissionType(missionType);
 
                 //Mission 2
-                    missionOverview2 = GameObject.Find("rewardImage2");
+                    rewardIcon2 = GameObject.Find("rewardImage2");
                     missionNameText2 = GameObject.Find("missionName2").GetComponent<Text>();
                     missionDescriptionText2 = GameObject.Find("missionDescription2").GetComponent<Text>();
                     rewardText2 = GameObject.Find("missionReward2").GetComponent<Text>();
                     missionDurationText2 = GameObject.Find("missionDuration2").GetComponent<Text>();
                     missionRiskText2 = GameObject.Find("missionRisk2").GetComponent<Text>();
-                    missionRewardImage2 = missionOverview2.GetComponent<Image>();
+                    missionRewardImage2 = rewardIcon2.GetComponent<Image>();
 
                     missionType2 = createMissions.missionType2;
                     missionNameText2.text = "" + createMissions.missionName2;
@@ -120,8 +124,8 @@ public class missionInfo : MonoBehaviour
         PuppetManager puppetScript = puppet.GetComponent<PuppetManager>();
         puppetScript.busy = true;
         puppetScript.onMission = true;
-        puppetScript.startMission(createMissions.missionDuration1, createMissions.missionRisk1, createMissions.missionReward1, createMissions.missionType1);
-        Debug.Log("puppet " + puppetId + " is send on a mission..");
+        puppetScript.startMission(createMissions.missionDuration1, createMissions.missionRisk1, 
+            createMissions.missionReward1, createMissions.missionType1, 1, missionBusy1, missionOverview1);
     }
 
     public void startMission2(String Dropdown)
@@ -137,8 +141,8 @@ public class missionInfo : MonoBehaviour
         PuppetManager puppetScript = puppet.GetComponent<PuppetManager>();
         puppetScript.busy = true;
         puppetScript.onMission = true;
-        puppetScript.startMission(createMissions.missionDuration2, createMissions.missionRisk2, createMissions.missionReward2, createMissions.missionType2);
-        Debug.Log("puppet " + puppetId + " is send on a mission..");
+        puppetScript.startMission(createMissions.missionDuration2, createMissions.missionRisk2,
+            createMissions.missionReward2, createMissions.missionType2, 2, missionBusy2, missionOverview2);
     }
 
     public Sprite translateMissionType(int type)

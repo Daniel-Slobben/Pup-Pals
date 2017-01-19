@@ -37,6 +37,8 @@ public class PuppetManager : MonoBehaviour
     public int missionReward;
     public int missionRisk;
     public int missionType;
+    public GameObject busyMissionPanel;
+    public GameObject missionPanel;
 
     // Use this for initialization
     void Start()
@@ -189,14 +191,21 @@ public class PuppetManager : MonoBehaviour
         return hygieneToDecrease;
     }
 
-    public void startMission(int duration, int risk, int reward, int type)
+    public void startMission(int duration, int risk, int reward, int type, int missionNumber, GameObject busyPanel, GameObject missionView)
     {
         if(onMission == true)
         {
+
+            missionPanel = missionView;
+            busyMissionPanel = busyPanel;
+            missionPanel.SetActive(false);
+
             missionType = type;
             missionReward = reward;
             missionRisk = risk;
             missionDuration = duration;
+            
+            busyPanel.SetActive(true);
         }
     }
 
@@ -205,6 +214,8 @@ public class PuppetManager : MonoBehaviour
         missionDuration--;
         if (missionDuration == 0)
         {
+            busyMissionPanel.SetActive(false);
+            missionPanel.SetActive(true);
             onMission = false;
             busy = false;
             int rng = Random.Range(40, 100 - 1);
