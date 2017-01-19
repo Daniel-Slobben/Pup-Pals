@@ -134,6 +134,7 @@ public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             healthIcon.SetActive(false);
             occupationIcon.SetActive(false);
             overImageOccupation.SetActive(false);
+            launchPuppetWashing.SetActive(false);
         }
         
     }
