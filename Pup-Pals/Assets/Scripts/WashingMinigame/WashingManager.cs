@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class WashingManager : MonoBehaviour {
         
@@ -26,6 +27,7 @@ public class WashingManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(width * height * percentageRequired);
         if (checkIfDone())
         {
             // The player finished.
@@ -37,10 +39,12 @@ public class WashingManager : MonoBehaviour {
         }
         if (Input.GetMouseButton(0))
         {
+            
             hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             if (hitInfo)
             {
                 UpdateTexture(true);
+                
             }
             else
             {
