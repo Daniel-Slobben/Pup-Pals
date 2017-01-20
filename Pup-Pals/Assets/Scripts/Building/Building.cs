@@ -23,7 +23,7 @@ public abstract class Building : MonoBehaviour
     protected void Start()
     {
         gameManager = (GameManager)GameObject.FindGameObjectWithTag("GameController").GetComponent(typeof(GameManager));
-        
+
         if (!firstTry)
         {
             puppets = new ArrayList(slots);
