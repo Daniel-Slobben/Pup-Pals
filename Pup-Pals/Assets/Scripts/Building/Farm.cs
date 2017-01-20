@@ -14,10 +14,6 @@ public class Farm : Building
         Debug.Log("atleast i tried");
         base.Start();
         Debug.Log("money cost" + gameManager.buildingMaterials);
-
-        puppets = new ArrayList(slots);
-
-        buildProgress = 0;
     }
     public override bool cost()
     {

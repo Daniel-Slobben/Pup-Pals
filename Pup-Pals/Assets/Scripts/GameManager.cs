@@ -196,7 +196,10 @@ public class GameManager : MonoBehaviour
 
     public void addBuilding(Building building)
     {
-        buildings.Add(building);
+        if (!buildings.Contains(building))
+        {
+            buildings.Add(building);
+        }
     }
 
     public void removeBuilding(Building buildingToRemove)
