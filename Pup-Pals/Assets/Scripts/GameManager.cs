@@ -265,10 +265,13 @@ public class GameManager : MonoBehaviour
     {
         GameObject panel = Instantiate(eventPanel);
         panel.transform.parent = GUI.transform;
-        Vector2 position = new Vector2(410.3499f, -38);
+        Vector2 position = new Vector2(814, 136.32f);
         panel.GetComponent<RectTransform>().anchoredPosition = position;
         GameObject panelChild = panel.transform.GetChild(0).gameObject;
         panelChild.GetComponent<Text>().text = text;
+        panel.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+
+
         panel.SetActive(true);
     }
 }
