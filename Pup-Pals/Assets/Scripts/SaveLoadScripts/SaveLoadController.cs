@@ -3,7 +3,6 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 
 public class SaveLoadController : MonoBehaviour
 {
@@ -17,7 +16,7 @@ public class SaveLoadController : MonoBehaviour
     public void Start()
     {
         gameObject.GetComponent<PlayAudio>().inGameSound.Stop();
-        currentScene = EditorApplication.currentScene;
+        currentScene = Application.loadedLevelName;
     }
 
     void Awake()
@@ -39,16 +38,16 @@ public class SaveLoadController : MonoBehaviour
 
     public void Update()
     {
-        if(currentScene != EditorApplication.currentScene && currentScene != null)
+        if(currentScene != Application.loadedLevelName && currentScene != null)
         {
-            currentScene = EditorApplication.currentScene;
+            currentScene = Application.loadedLevelName;
 
-            if(currentScene == "Assets/Scenes/MainMenu.unity" && currentScene != "Assets/Scenes/CreatePlayer.unity")
+            if(currentScene == "MainMenu" && currentScene != "CreatePlayer")
             {
                 if(!gameObject.GetComponent<PlayAudio>().mainMenuSound.isPlaying)
                 gameObject.GetComponent<PlayAudio>().playMenuSound();
             }
-            if (currentScene == "Assets/Scenes/game.unity")
+            if (currentScene == "game")
             {
                 gameObject.GetComponent<PlayAudio>().playInGameSound();
             }

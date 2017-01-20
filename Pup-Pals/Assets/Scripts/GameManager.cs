@@ -126,6 +126,10 @@ public class GameManager : MonoBehaviour
             else
             {
                 showEventPanel("You don't have enough resources to create a puppet!");
+                if (puppets.Count == 0)
+                { 
+                    gameOverScreen.SetActive(true);
+                }
             }
             
         }
