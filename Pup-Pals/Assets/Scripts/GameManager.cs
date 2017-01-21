@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         if (firstPlay == false)
         {
             firstPlay = true;
-            food = 100;
+            food = 130;
             buildingMaterials = 100;
             money = 10;
 
