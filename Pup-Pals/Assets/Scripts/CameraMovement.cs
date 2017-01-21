@@ -15,10 +15,10 @@ public class CameraMovement : MonoBehaviour {
     public float mapX;                      //Map/background width.
     public float mapY;                      //Map/background height.
 
-    private float zoom = 5;                 //Standard zoom variable.
-    private float zoomSpeed = 0.2f;         //Zoom speed variable.
-    private float zoomMax = 7;             //Max zoom variable.
-    private float zoomMin = 3;              //Min zoom variable.
+    public float zoom = 5;                 //Standard zoom variable.
+    public float zoomSpeed = 0.2f;         //Zoom speed variable.
+    public float zoomMax = 7;             //Max zoom variable.
+    public float zoomMin = 3;              //Min zoom variable.
     
     private Vector3 desiredPosition;
 

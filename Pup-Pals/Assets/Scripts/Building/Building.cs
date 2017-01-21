@@ -22,15 +22,15 @@ public abstract class Building : MonoBehaviour
     // Use this for initialization
     protected void Start()
     {
+        gameManager = (GameManager)GameObject.FindGameObjectWithTag("GameController").GetComponent(typeof(GameManager));
+
         if (!firstTry)
         {
+            puppets = new ArrayList(slots);
             firstTry = true;
             currentSprite = construction;
+            gameManager.addBuilding(this);
         }
-        Debug.Log("atleast i tried");
-
-        gameManager = (GameManager)GameObject.FindGameObjectWithTag("GameController").GetComponent(typeof(GameManager));
-        gameManager.addBuilding(this);
         GetComponent<SpriteRenderer>().sprite = currentSprite;
     }
 
@@ -45,7 +45,6 @@ public abstract class Building : MonoBehaviour
     public void addPuppet(GameObject puppet)
     {
         PuppetManager puppetScript = (PuppetManager)puppet.GetComponent(typeof(PuppetManager));
-        Debug.Log("puppet count: " + puppets.Count);
         if (puppets.Count < slots && !puppetScript.busy)
         {
             puppetScript.busy = true;
@@ -53,8 +52,8 @@ public abstract class Building : MonoBehaviour
             if (build)
             {
                 puppetScript.occupation = this;
-            }            
-            puppets.Add(puppet);            
+            }
+            puppets.Add(puppet);
         }
         else
         {
@@ -89,16 +88,13 @@ public abstract class Building : MonoBehaviour
     {
         if (!build && puppets.Count >= slotsToBuild)
         {
-            Debug.Log("Building progress was made!");
-            Debug.Log("The puppet were: " + puppets.Count);
-            Debug.Log("The slotstoBuikld isL: " + slotsToBuild);
             buildProgress += 1;
             if (buildProgress >= timeToBuild)
             {
                 build = true;
                 changeAnimationTobuild();
                 setOccupation();
-            }            
+            }
         }
         if (build)
         {

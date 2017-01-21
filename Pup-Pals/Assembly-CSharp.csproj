@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Audio Scripts\PlayAudio.cs" />
      <Compile Include="Assets\Scripts\Building\Building.cs" />
      <Compile Include="Assets\Scripts\Building\Farm.cs" />
      <Compile Include="Assets\Scripts\Building\LaunchWashingScript.cs" />
@@ -75,6 +76,7 @@
      <Compile Include="Assets\Scripts\ToggleMenu.cs" />
      <Compile Include="Assets\Scripts\WashingMinigame\WashingManager.cs" />
      <Compile Include="Assets\Scripts\WashingMinigame\startParticles.cs" />
+     <Compile Include="Assets\gameOver.cs" />
      <Compile Include="Assets\loadGame.cs" />
      <Compile Include="Assets\resolveTextSize.cs" />
      <Compile Include="Assets\saveGame.cs" />

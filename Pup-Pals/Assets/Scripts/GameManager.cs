@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         if (firstPlay == false)
         {
             firstPlay = true;
-            food = 100;
+            food = 130;
             buildingMaterials = 100;
             money = 10;
 
@@ -126,6 +126,10 @@ public class GameManager : MonoBehaviour
             else
             {
                 showEventPanel("You don't have enough resources to create a puppet!");
+                if (puppets.Count == 0)
+                { 
+                    gameOverScreen.SetActive(true);
+                }
             }
             
         }
@@ -196,7 +200,10 @@ public class GameManager : MonoBehaviour
 
     public void addBuilding(Building building)
     {
-        buildings.Add(building);
+        if (!buildings.Contains(building))
+        {
+            buildings.Add(building);
+        }
     }
 
     public void removeBuilding(Building buildingToRemove)
@@ -258,10 +265,13 @@ public class GameManager : MonoBehaviour
     {
         GameObject panel = Instantiate(eventPanel);
         panel.transform.parent = GUI.transform;
-        Vector2 position = new Vector2(410.3499f, -38);
+        Vector2 position = new Vector2(814, 136.32f);
         panel.GetComponent<RectTransform>().anchoredPosition = position;
         GameObject panelChild = panel.transform.GetChild(0).gameObject;
         panelChild.GetComponent<Text>().text = text;
+        panel.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+
+
         panel.SetActive(true);
     }
 }

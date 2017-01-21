@@ -40,14 +40,19 @@ public class PuppetManager : MonoBehaviour
     public GameObject busyMissionPanel;
     public GameObject missionPanel;
 
+    public bool notFirstPlay;
+
     // Use this for initialization
     void Start()
     {
-
+        if (!notFirstPlay)
+        {
+            nameGenerator = new NameGenerator();
+            firstName = nameGenerator.generateName();
+            surname = nameGenerator.generateSurname();
+            notFirstPlay = true;
+        }
         onMission = false;
-        nameGenerator = new NameGenerator();
-        firstName = nameGenerator.generateName();
-        surname = nameGenerator.generateSurname();
 
         GetComponent<SpriteRenderer>().sprite = cursor;
         gameManager = (GameManager)GameObject.FindGameObjectWithTag("GameController").GetComponent(typeof(GameManager));
@@ -187,13 +192,13 @@ public class PuppetManager : MonoBehaviour
                 sanitized = false;
             }
         }
-        
+
         return hygieneToDecrease;
     }
 
     public void startMission(int duration, int risk, int reward, int type, int missionNumber, GameObject busyPanel, GameObject missionView)
     {
-        if(onMission == true)
+        if (onMission == true)
         {
 
             missionPanel = missionView;
@@ -204,7 +209,7 @@ public class PuppetManager : MonoBehaviour
             missionReward = reward;
             missionRisk = risk;
             missionDuration = duration;
-            
+
             busyPanel.SetActive(true);
         }
     }
@@ -219,7 +224,7 @@ public class PuppetManager : MonoBehaviour
             onMission = false;
             busy = false;
             int rng = Random.Range(40, 100 - 1);
-            if(rng <= missionRisk)
+            if (rng <= missionRisk)
             {
                 switch (missionType)
                 {
@@ -236,7 +241,7 @@ public class PuppetManager : MonoBehaviour
                         gameManager.showEventPanel("A mission succeeded! You have earned " + missionReward + " gold!");
                         break;
                 }
-                
+
             }
             else
             {

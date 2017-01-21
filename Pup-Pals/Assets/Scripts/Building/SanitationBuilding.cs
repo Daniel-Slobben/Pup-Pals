@@ -4,9 +4,9 @@ using System;
 
 public class SanitationBuilding : Building
 {
-    
+
     public static int woodCost = -24;
-    
+
     // Use this for initialization
     // this building is not finished yet. In the start function it should make the animation change to construction animation
     new void Start()
@@ -16,7 +16,7 @@ public class SanitationBuilding : Building
         puppets = new ArrayList(slots);
 
         buildProgress = 0;
-        
+
     }
 
     public override bool cost()
@@ -30,7 +30,7 @@ public class SanitationBuilding : Building
 
     private void OnDestroy()
     {
-        foreach(GameObject puppet in puppets)
+        foreach (GameObject puppet in puppets)
         {
             PuppetManager script = puppet.GetComponent<PuppetManager>();
             script.sanitized = false;
@@ -58,7 +58,7 @@ public class SanitationBuilding : Building
             if (secondOldestPuppet != null)
             {
                 secondOldestPuppetScript = secondOldestPuppet.GetComponent<PuppetManager>();
-            }            
+            }
 
             if (oldestPuppet == null)
             {
@@ -83,12 +83,16 @@ public class SanitationBuilding : Building
         {
             PuppetManager oldestPuppetScriptFinal = oldestPuppet.GetComponent<PuppetManager>();
             oldestPuppetScriptFinal.sanitize();
+            oldestPuppetScriptFinal.sick = false;
+            oldestPuppetScriptFinal.hygiene = 100;
         }
         if (secondOldestPuppet != null)
         {
             PuppetManager secondOldestPuppetScriptFinal = secondOldestPuppet.GetComponent<PuppetManager>();
             secondOldestPuppetScriptFinal.sanitize();
+            secondOldestPuppetScriptFinal.sick = false;
+            secondOldestPuppetScriptFinal.hygiene = 100;
         }
-                
+
     }
 }

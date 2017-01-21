@@ -2,6 +2,7 @@
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class SaveLoadController : MonoBehaviour
 {
@@ -9,10 +10,19 @@ public class SaveLoadController : MonoBehaviour
     public static SaveLoadController control;
     public string playerName;
     public int playerIdentity;
+    public string currentScene;
 
     // Check if only one singleton excists.
+    public void Start()
+    {
+        gameObject.GetComponent<PlayAudio>().inGameSound.Stop();
+        currentScene = Application.loadedLevelName;
+    }
+
     void Awake()
     {
+       
+
         if (control == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -23,6 +33,25 @@ public class SaveLoadController : MonoBehaviour
             Destroy(gameObject);
         }
 
+
+    }
+
+    public void Update()
+    {
+        if(currentScene != Application.loadedLevelName && currentScene != null)
+        {
+            currentScene = Application.loadedLevelName;
+
+            if(currentScene == "MainMenu" && currentScene != "CreatePlayer")
+            {
+                if(!gameObject.GetComponent<PlayAudio>().mainMenuSound.isPlaying)
+                gameObject.GetComponent<PlayAudio>().playMenuSound();
+            }
+            if (currentScene == "game")
+            {
+                gameObject.GetComponent<PlayAudio>().playInGameSound();
+            }
+        }
     }
 
     public void Save(int playerIdentity)
@@ -56,10 +85,11 @@ public class SaveLoadController : MonoBehaviour
             this.playerName = "";
             Application.LoadLevel("CreatePlayer");
         }
+        
     }
 
-   public void setPlayerIdentity(int id)
-   {
+    public void setPlayerIdentity(int id)
+    {
         this.playerIdentity = id;
     }
 
