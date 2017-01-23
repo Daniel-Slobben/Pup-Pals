@@ -154,7 +154,10 @@ public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnPointerExit(PointerEventData eventData)
     {
         isOver = false;
-        updateText();
+        if (puppetSlot != null)
+        {
+            updateText();            
+        }
         HoverPanel.SetActive(false);
     }
 

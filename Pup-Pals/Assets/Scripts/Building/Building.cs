@@ -30,6 +30,7 @@ public abstract class Building : MonoBehaviour
     // Use this for initialization
     protected void Start()
     {
+        textObject = textInfo.GetComponent<Text>();
         gameManager = (GameManager)GameObject.FindGameObjectWithTag("GameController").GetComponent(typeof(GameManager));
 
         if (!firstTry)
@@ -41,7 +42,7 @@ public abstract class Building : MonoBehaviour
         }
         GetComponent<SpriteRenderer>().sprite = currentSprite;
 
-        textObject = textInfo.GetComponent<Text>();
+        
         updateText();
         gameObject.transform.parent = GameObject.FindGameObjectWithTag("BuildingCanvas").transform;
     }
@@ -158,7 +159,10 @@ public abstract class Building : MonoBehaviour
             string text = "There are currently " + puppets.Count + System.Environment.NewLine + "puppets inside." + 
                 System.Environment.NewLine + System.Environment.NewLine + "This building takes " +timeToBuild+ System.Environment.NewLine+"turns to build."+
                 System.Environment.NewLine+ System.Environment.NewLine+"This building requires" + System.Environment.NewLine+slotsToBuild+" puppets to build.";
-            textObject.text = "" + text;
+            if (textObject != null)
+            {
+                textObject.text = "" + text;
+            }
         }
         if (build)
         {
@@ -180,8 +184,10 @@ public abstract class Building : MonoBehaviour
             {
                 text = text + "The puppets in this building" + System.Environment.NewLine + "get educated.";
             }
-            textObject.text = "" + text;
-
+            if (textObject != null)
+            {
+                textObject.text = "" + text;
+            }
         }
     }
 }
