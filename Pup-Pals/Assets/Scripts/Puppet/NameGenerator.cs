@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class NameGenerator : MonoBehaviour
 {
 
-    string[] names = new string[] { "Marnix", "Daniel", "Achmed", "Mohammed", "Youssef", "Sagbeh" };
-    string[] surnames = new string[] { "Blaauw", "Slobben", "Ackbar" };
+    string[] names = new string[] { "Marnix", "Daniel", "Alex", "Shilene", "Ayla", "Jeffrey" };
+    string[] surnames = new string[] { "Blaauw", "Slobben", "Charron", "Vonk", "Sjoers", "van den Berg" };
 
     public string generateName()
     {

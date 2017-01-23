@@ -114,6 +114,7 @@ public class GameManager : MonoBehaviour
                 puppet.GetComponent<PuppetManager>().checkMissionStatus();
             }
         }
+        checkIfGameIsWon();
     }
 
     public void addPuppet(GameObject puppet)
@@ -303,5 +304,27 @@ public class GameManager : MonoBehaviour
             }
         }
 
+    }
+
+    private void checkIfGameIsWon()
+    {
+        int counter = 0;
+        foreach (GameObject puppet in puppets)
+        {
+            PuppetManager puppetScript = puppet.GetComponent<PuppetManager>();
+            if (puppetScript.sanitized)
+            {
+                counter++;
+            }
+            if (counter >= 4)
+            {
+                winState();
+            }
+
+        }
+    }
+    private void winState()
+    {
+        // we win now boi
     }
 }
