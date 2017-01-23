@@ -20,11 +20,13 @@ public class GameManager : MonoBehaviour
     public ArrayList buildings;
 
     public bool firstPlay;
+    public bool showEvents;
 
+    public GameObject tutorialPanel;
     public GameObject GUI;
     public GameObject eventPanel;
     public GameObject gameOverScreen;
-
+    public int i;
     private Events events;
 
     Text foodText;
@@ -36,10 +38,10 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        i = 0;
         events = new Events(this);
-
+        showEvents = true;
         text = GameObject.Find("WelcomeText").GetComponent<Text>();
-
         foodText = GameObject.Find("FoodValue").GetComponent<Text>();
         buildingMaterialsText = GameObject.Find("BuildMatsValue").GetComponent<Text>();
         moneyText = GameObject.Find("MoneyValue").GetComponent<Text>();
@@ -51,24 +53,33 @@ public class GameManager : MonoBehaviour
         text.GetComponentInChildren<Text>().text = SaveLoadController.control.getPlayerName(playerIdentity) + "'s village";
 
         text.CrossFadeAlpha(0.0f, 2.0f, false);
-
+        
         if (firstPlay == false)
         {
             firstPlay = true;
             food = 130;
             buildingMaterials = 100;
             money = 10;
-
             puppets = new List<GameObject>(6);
             buildings = new ArrayList();
+            
         }
 
         Invoke("checkSlots", 1);
     }
-
     // Update is called once per frame
     void Update()
     {
+
+        if(i <= 5)
+        {
+            i++;
+            if(i == 5)
+            {
+                checkTutorial(false);
+            }
+        }
+
         if (Input.GetMouseButtonDown(1))
         {
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
@@ -263,15 +274,34 @@ public class GameManager : MonoBehaviour
     }
     public void showEventPanel(string text)
     {
-        GameObject panel = Instantiate(eventPanel);
-        panel.transform.parent = GUI.transform;
-        Vector2 position = new Vector2(814, 136.32f);
-        panel.GetComponent<RectTransform>().anchoredPosition = position;
-        GameObject panelChild = panel.transform.GetChild(0).gameObject;
-        panelChild.GetComponent<Text>().text = text;
-        panel.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        if(showEvents = true)
+        {
+            GameObject panel = Instantiate(eventPanel);
+            panel.transform.parent = GUI.transform;
+            Vector2 position = new Vector2(814, 136.32f);
+            panel.GetComponent<RectTransform>().anchoredPosition = position;
+            GameObject panelChild = panel.transform.GetChild(0).gameObject;
+            panelChild.GetComponent<Text>().text = text;
+            panel.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
 
 
-        panel.SetActive(true);
+            panel.SetActive(true);
+        }
+
+    }
+
+    public void checkTutorial(bool firstPlay)
+    {
+        if(firstPlay == false)
+        {
+            firstPlay = true;
+            if (turnNumber <= 0)
+            {
+                TutorialManager tman = GetComponent<TutorialManager>();
+                tutorialPanel.SetActive(true);
+                tman.startTutorial();
+            }
+        }
+
     }
 }
