@@ -29,6 +29,8 @@ public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public GameObject healthIcon;
     public GameObject overImageOccupation;
     public GameObject launchPuppetWashing;
+    public GameObject HoverPanel;
+    public GameObject Text;
 
     public bool isOver = false;
 
@@ -142,10 +144,24 @@ public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnPointerEnter(PointerEventData eventData)
     {
         isOver = true;
+        if (puppetSlot != null)
+        {
+            updateText();
+            HoverPanel.SetActive(true);
+        }        
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         isOver = false;
+        updateText();
+        HoverPanel.SetActive(false);
+    }
+
+    private void updateText()
+    {
+        Text textObject = Text.GetComponent<Text>();
+        PuppetManager script = puppetSlot.GetComponent<PuppetManager>();
+        textObject.text = "Name: "+ script.firstName+" "+script.surname+ System.Environment.NewLine + "hygiene: " + script.hygiene;
     }
 }

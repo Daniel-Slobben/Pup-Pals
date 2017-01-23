@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public abstract class Building : MonoBehaviour
 {
@@ -16,6 +18,12 @@ public abstract class Building : MonoBehaviour
     public int timeToBuild;
 
     public bool firstTry;
+    public bool isOver;
+
+    public GameObject extraInfo;
+    public GameObject textInfo;
+    
+    public Text textObject;
 
     public string buildingName;
 
@@ -32,12 +40,15 @@ public abstract class Building : MonoBehaviour
             gameManager.addBuilding(this);
         }
         GetComponent<SpriteRenderer>().sprite = currentSprite;
+
+        textObject = textInfo.GetComponent<Text>();
+        updateText();
+        gameObject.transform.parent = GameObject.FindGameObjectWithTag("BuildingCanvas").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 
     /**
@@ -59,6 +70,7 @@ public abstract class Building : MonoBehaviour
         {
             Debug.Log("No slots available");
         }
+        updateText();
     }
 
     public void removePuppet(GameObject puppetToRemove)
@@ -70,9 +82,10 @@ public abstract class Building : MonoBehaviour
                 PuppetManager puppetScript = (PuppetManager)puppetToRemove.GetComponent(typeof(PuppetManager));
                 puppetScript.busy = false;
                 puppets.Remove(puppetToRemove);
+                updateText();
                 return;
             }
-        }
+        }        
     }
 
     /**
@@ -86,6 +99,7 @@ public abstract class Building : MonoBehaviour
     public abstract bool cost();
     public void nextTurn()
     {
+        updateText();
         if (!build && puppets.Count >= slotsToBuild)
         {
             buildProgress += 1;
@@ -99,6 +113,7 @@ public abstract class Building : MonoBehaviour
         if (build)
         {
             specialBuildingAction();
+            updateText();
         }
     }
 
@@ -120,6 +135,53 @@ public abstract class Building : MonoBehaviour
             addPuppet(GameManager.PuppetTransport);
             GameManager.PuppetTransport = null;
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        }
+    }
+
+    private void OnMouseEnter()
+    {
+        isOver = true;
+        extraInfo.SetActive(true);
+    }
+    
+    private void OnMouseExit()
+    {
+        extraInfo.SetActive(false);
+    }
+
+    /**
+     */
+    private void updateText()
+    {
+        if (!build)
+        {
+            string text = "There are currently " + puppets.Count + System.Environment.NewLine + "puppets inside." + 
+                System.Environment.NewLine + System.Environment.NewLine + "This building takes " +timeToBuild+ System.Environment.NewLine+"turns to build."+
+                System.Environment.NewLine+ System.Environment.NewLine+"This building requires" + System.Environment.NewLine+slotsToBuild+" puppets to build.";
+            textObject.text = "" + text;
+        }
+        if (build)
+        {
+            string text = "There are currently " + puppets.Count + System.Environment.NewLine + "puppets inside." +
+                System.Environment.NewLine + System.Environment.NewLine;
+            if (buildingName == "farm")
+            {
+                text = text + "The farm is making" + System.Environment.NewLine + 4 * puppets.Count + " food per turn.";
+            }
+            else if (buildingName == "workshop")
+            {
+                text = text + "The workshop is making" + System.Environment.NewLine + 4 * puppets.Count + " wood per turn.";
+            }
+            else if (buildingName == "sanitation")
+            {
+                text = text + "This building heals the 2"+ System.Environment.NewLine+"oldest puppets in the building.";
+            }
+            else if (buildingName == "school")
+            {
+                text = text + "The puppets in this building" + System.Environment.NewLine + "get educated.";
+            }
+            textObject.text = "" + text;
+
         }
     }
 }
