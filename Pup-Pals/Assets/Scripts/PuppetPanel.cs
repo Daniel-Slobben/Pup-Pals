@@ -165,6 +165,13 @@ public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         Text textObject = Text.GetComponent<Text>();
         PuppetManager script = puppetSlot.GetComponent<PuppetManager>();
-        textObject.text = "Name: "+ script.firstName+" "+script.surname+ System.Environment.NewLine + "hygiene: " + script.hygiene;
+        string newText = "Name: "+ script.firstName+" "+script.surname+ System.Environment.NewLine + "hygiene: " + script.hygiene
+            + System.Environment.NewLine;
+        if (script.schooled)
+        {
+            newText = newText + "This puppet is educated!";
+        }
+        textObject.text = newText;
+
     }
 }

@@ -13,10 +13,6 @@ public class SanitationBuilding : Building
     {
         base.Start();
 
-        puppets = new ArrayList(slots);
-
-        buildProgress = 0;
-
     }
 
     public override bool cost()

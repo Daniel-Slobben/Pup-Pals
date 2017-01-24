@@ -15,10 +15,6 @@ public class Workshop : Building {
     new void Start()
     {
         base.Start();
-
-        puppets = new ArrayList(slots);
-
-        buildProgress = 0;
     }
 
     public override bool cost()

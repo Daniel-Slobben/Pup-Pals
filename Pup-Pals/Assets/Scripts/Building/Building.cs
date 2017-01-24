@@ -147,6 +147,7 @@ public abstract class Building : MonoBehaviour
     
     private void OnMouseExit()
     {
+        isOver = false;
         extraInfo.SetActive(false);
     }
 
