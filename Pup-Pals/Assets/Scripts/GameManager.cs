@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         text.GetComponentInChildren<Text>().text = SaveLoadController.control.getPlayerName(playerIdentity) + "'s village";
 
         text.CrossFadeAlpha(0.0f, 2.0f, false);
-        
+
         if (firstPlay == false)
         {
             firstPlay = true;
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
             money = 10;
             puppets = new List<GameObject>(6);
             buildings = new ArrayList();
-            
+
         }
 
         Invoke("checkSlots", 1);
@@ -71,10 +71,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-        if(i <= 5)
+        if (i <= 5)
         {
             i++;
-            if(i == 5)
+            if (i == 5)
             {
                 checkTutorial(false);
             }
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject puppet in puppets)
         {
-            if(puppet.GetComponent<PuppetManager>().onMission == true)
+            if (puppet.GetComponent<PuppetManager>().onMission == true)
             {
                 puppet.GetComponent<PuppetManager>().checkMissionStatus();
             }
@@ -139,11 +139,11 @@ public class GameManager : MonoBehaviour
             {
                 showEventPanel("You don't have enough resources to create a puppet!");
                 if (puppets.Count == 0)
-                { 
+                {
                     gameOverScreen.SetActive(true);
                 }
             }
-            
+
         }
         else
         {
@@ -238,7 +238,7 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject puppet in tempPuppets.ToArray())
         {
-            PuppetManager puppetManager = puppet.GetComponent<PuppetManager>();            
+            PuppetManager puppetManager = puppet.GetComponent<PuppetManager>();
             if (puppetManager.notifyPuppetEndTurn())
             {
                 removePuppet(puppet);
@@ -275,7 +275,7 @@ public class GameManager : MonoBehaviour
     }
     public void showEventPanel(string text)
     {
-        if(showEvents = true)
+        if (showEvents = true)
         {
             GameObject panel = Instantiate(eventPanel);
             panel.transform.parent = GUI.transform;
@@ -288,12 +288,11 @@ public class GameManager : MonoBehaviour
 
             panel.SetActive(true);
         }
-
     }
 
     public void checkTutorial(bool firstPlay)
     {
-        if(firstPlay == false)
+        if (firstPlay == false)
         {
             firstPlay = true;
             if (turnNumber <= 0)
