@@ -330,6 +330,7 @@ public class GameManager : MonoBehaviour
     }
     private void winState()
     {
+        gameWon = true;
         winScreen.SetActive(true);
     }
 }
