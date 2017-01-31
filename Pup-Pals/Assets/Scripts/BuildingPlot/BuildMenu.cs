@@ -12,11 +12,6 @@ public class BuildMenu : MonoBehaviour {
         buildingPlotScript = (BuildingPlot)buildingPLot.GetComponent(typeof(BuildingPlot));
         Invoke("setInfo", 0.1f);
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
     public void setInfo()
     {
@@ -49,7 +44,6 @@ public class BuildMenu : MonoBehaviour {
     }
     private void OnMouseDown()
     {
-        //buildingPlotScript.build(info);
         Debug.Log("builidng now: "+info);
         buildingPlotScript.build(info);
     }

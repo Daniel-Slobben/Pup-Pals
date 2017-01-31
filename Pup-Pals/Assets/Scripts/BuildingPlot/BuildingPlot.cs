@@ -102,12 +102,12 @@ public class BuildingPlot : MonoBehaviour {
     {
         if (buildingScript.cost())
         {
-            Debug.Log("got monies");
+            // Enough Money
             Destroy(transform.gameObject);
         }
         else
         {
-            Debug.Log("no monies");
+            // Not Enough Money
             menuScript.info = "NotEnoughMoney";
             menuScript.setInfo();
             Destroy(building);

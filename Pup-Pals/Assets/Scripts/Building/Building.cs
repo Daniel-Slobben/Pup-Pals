@@ -7,11 +7,8 @@ public abstract class Building : MonoBehaviour
 {
 
     public int slots;
-    protected GameManager gameManager;
     public ArrayList puppets;
-    public Sprite construction;
-    public Sprite building;
-    public Sprite currentSprite;
+    
     public bool build;
     public int slotsToBuild;
     public int buildProgress;
@@ -22,8 +19,14 @@ public abstract class Building : MonoBehaviour
 
     public GameObject extraInfo;
     public GameObject textInfo;
-    
+
+    public Sprite construction;
+    public Sprite building;
+    public Sprite currentSprite;
+
     public Text textObject;
+    
+    protected GameManager gameManager;
 
     public string buildingName;
 
@@ -33,6 +36,8 @@ public abstract class Building : MonoBehaviour
         textObject = textInfo.GetComponent<Text>();
         gameManager = (GameManager)GameObject.FindGameObjectWithTag("GameController").GetComponent(typeof(GameManager));
 
+        // The start method gets called multiple times due to how our save function works
+        // this statement makes sure this only gets executed when
         if (!firstTry)
         {
             puppets = new ArrayList(slots);
@@ -41,18 +46,12 @@ public abstract class Building : MonoBehaviour
             gameManager.addBuilding(this);
         }
         GetComponent<SpriteRenderer>().sprite = currentSprite;
-
-        
         updateText();
         gameObject.transform.parent = GameObject.FindGameObjectWithTag("BuildingCanvas").transform;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     /**
+     * Add a puppet to this building
      */
     public void addPuppet(GameObject puppet)
     {
@@ -69,11 +68,14 @@ public abstract class Building : MonoBehaviour
         }
         else
         {
-            Debug.Log("No slots available");
+            Debug.Log("No slots available in this building.");
         }
         updateText();
     }
 
+    /**
+     * Remove a puppet from this building
+     */
     public void removePuppet(GameObject puppetToRemove)
     {
         foreach (GameObject puppet in puppets)
@@ -97,7 +99,7 @@ public abstract class Building : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = building;
         currentSprite = building;
     }
-    public abstract bool cost();
+
     public void nextTurn()
     {
         updateText();
@@ -127,8 +129,6 @@ public abstract class Building : MonoBehaviour
         }
     }
 
-    protected abstract void specialBuildingAction();
-
     private void OnMouseUp()
     {
         if (GameManager.PuppetTransport != null)
@@ -144,21 +144,22 @@ public abstract class Building : MonoBehaviour
         isOver = true;
         extraInfo.SetActive(true);
     }
-    
+
     private void OnMouseExit()
     {
         extraInfo.SetActive(false);
     }
 
     /**
+     * Updates the current onmouseover text of this building
      */
     private void updateText()
     {
         if (!build)
         {
-            string text = "There are currently " + puppets.Count + System.Environment.NewLine + "puppets inside." + 
-                System.Environment.NewLine + System.Environment.NewLine + "This building takes " +timeToBuild+ System.Environment.NewLine+"turns to build."+
-                System.Environment.NewLine+ System.Environment.NewLine+"This building requires" + System.Environment.NewLine+slotsToBuild+" puppets to build.";
+            string text = "There are currently " + puppets.Count + System.Environment.NewLine + "puppets inside." +
+                System.Environment.NewLine + System.Environment.NewLine + "This building takes " + timeToBuild + System.Environment.NewLine + "turns to build." +
+                System.Environment.NewLine + System.Environment.NewLine + "This building requires" + System.Environment.NewLine + slotsToBuild + " puppets to build.";
             if (textObject != null)
             {
                 textObject.text = "" + text;
@@ -178,7 +179,7 @@ public abstract class Building : MonoBehaviour
             }
             else if (buildingName == "sanitation")
             {
-                text = text + "This building heals the 2"+ System.Environment.NewLine+"oldest puppets in the building.";
+                text = text + "This building heals the 2" + System.Environment.NewLine + "oldest puppets in the building.";
             }
             else if (buildingName == "school")
             {
@@ -190,4 +191,9 @@ public abstract class Building : MonoBehaviour
             }
         }
     }
+
+    public abstract bool cost();
+    protected abstract void specialBuildingAction();
+
+    
 }

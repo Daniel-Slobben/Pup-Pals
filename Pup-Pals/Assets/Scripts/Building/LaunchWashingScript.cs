@@ -2,16 +2,6 @@
 using System.Collections;
 
 public class LaunchWashingScript : MonoBehaviour {
-    
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
     public void wash()
     {
@@ -20,8 +10,6 @@ public class LaunchWashingScript : MonoBehaviour {
         puppetScript.sick = false;
         GetComponent<saveGame>().SaveGame();
         Application.LoadLevel("WashingGame");
-        
-
     }
 
 }

@@ -4,7 +4,6 @@ using System;
 
 public class Farm : Building
 {
-    
     public static int woodCost = -12;
     public int foodPerPuppet;
 
@@ -15,6 +14,7 @@ public class Farm : Building
         base.Start();
         Debug.Log("money cost" + gameManager.buildingMaterials);
     }
+
     public override bool cost()
     {
         if (gameManager == null)
@@ -26,6 +26,7 @@ public class Farm : Building
 
     protected override void specialBuildingAction()
     {
-        //throw new NotImplementedException();
+        // not implemented 
+        // not needed
     }
 }
