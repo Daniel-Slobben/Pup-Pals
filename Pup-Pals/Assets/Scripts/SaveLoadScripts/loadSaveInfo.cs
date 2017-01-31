@@ -1,11 +1,18 @@
-﻿using UnityEngine;
+﻿/*
+ * This script checks for excisting save files.
+ * @author Marnix Blaauw & Daniel Slobben
+ * @datecreated 12-01-2017
+ */
+
+
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class loadSaveInfo : MonoBehaviour {
     public static loadSaveInfo safeInfo;
-    public List<GameObject> buttonList;
+    public List<GameObject> buttonList;         //List of all the button objects from the player selection scene.
     GameObject buttn;
     private int amountOfButtons;
 

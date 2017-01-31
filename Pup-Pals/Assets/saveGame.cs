@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿/*
+ * This script creates serialized save files.
+ * @author Marnix Blaauw & Daniel Slobben
+ * @datecreated 16-12-2016
+ */
+
+using UnityEngine;
 
 
 public class saveGame : MonoBehaviour
@@ -9,9 +15,7 @@ public class saveGame : MonoBehaviour
 
     public void SaveGame()
     {
-        Debug.Log("Saving " + SaveLoadController.control.playerName + "'s game.");
         identity = SaveLoadController.control.getPlayerIdentity();
-        Debug.Log("Identity in save game: " + identity);
         LevelSerializer.PlayerName = identity.ToString();
         saveData = LevelSerializer.SerializeLevel();
         System.IO.File.WriteAllText(Application.persistentDataPath + "/" + identity + ".txt", saveData);

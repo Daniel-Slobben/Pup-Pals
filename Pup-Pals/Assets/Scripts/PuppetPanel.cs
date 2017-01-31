@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿/*
+ * This script handles bottom puppet panel.
+ * @author Marnix Blaauw & Daniel Slobben
+ * @datecreated 20-12-2016
+ */
+
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -34,14 +40,9 @@ public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public bool isOver = false;
 
-
-
-    // Use this for initialization
-    void Start () {
-    }
-
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         updateSlot();
     }
 
@@ -50,14 +51,6 @@ public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         Cursor.SetCursor(puppetSlot.GetComponent<SpriteRenderer>().sprite.texture, Vector2.zero, CursorMode.Auto);
         GameManager.PuppetTransport = puppetSlot;
         Debug.Log("cursor should be set");
-    }
-    
-    //Does nothing
-    public void checkGameObject()
-    {
-        if (puppetSlot == null)
-        {
-        }   
     }
 
     private void updateSlot()
@@ -71,7 +64,7 @@ public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             GetComponent<Image>().sprite = puppetSprite;
 
             if (isOver)
-            { 
+            {
                 if (Input.GetMouseButtonDown(1))
                 {
                     if (puppetSlot != null)
@@ -101,7 +94,7 @@ public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                         break;
                 }
             }
-            else if(puppetScript.busy)
+            else if (puppetScript.busy)
             {
                 if (puppetScript.working == null)
                 {
@@ -138,7 +131,7 @@ public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             overImageOccupation.SetActive(false);
             launchPuppetWashing.SetActive(false);
         }
-        
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -148,7 +141,7 @@ public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             updateText();
             HoverPanel.SetActive(true);
-        }        
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -156,7 +149,7 @@ public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         isOver = false;
         if (puppetSlot != null)
         {
-            updateText();            
+            updateText();
         }
         HoverPanel.SetActive(false);
     }
@@ -165,6 +158,6 @@ public class PuppetPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         Text textObject = Text.GetComponent<Text>();
         PuppetManager script = puppetSlot.GetComponent<PuppetManager>();
-        textObject.text = "Name: "+ script.firstName+" "+script.surname+ System.Environment.NewLine + "hygiene: " + script.hygiene;
+        textObject.text = "Name: " + script.firstName + " " + script.surname + System.Environment.NewLine + "hygiene: " + script.hygiene;
     }
 }

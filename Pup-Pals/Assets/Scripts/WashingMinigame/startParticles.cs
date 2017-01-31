@@ -1,4 +1,11 @@
-﻿using UnityEngine;
+﻿/*
+ * This script handles the particle effect on mouse down at the minigame.
+ * @author Marnix Blaauw & Daniel Slobben
+ * @datecreated 19-01-2017
+ */
+
+
+using UnityEngine;
 using System.Collections;
 
 public class startParticles : MonoBehaviour

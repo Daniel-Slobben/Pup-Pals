@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿/*
+ * This script generates names for the puppets.
+ * @author Marnix Blaauw & Daniel Slobben
+ * @datecreated 20-12-2016
+ */
+
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 

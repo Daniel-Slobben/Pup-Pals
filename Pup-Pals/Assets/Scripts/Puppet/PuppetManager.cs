@@ -1,4 +1,11 @@
-﻿using UnityEngine;
+﻿/*
+ * This script handles the puppet and it's stats.
+ * @author Marnix Blaauw & Daniel Slobben
+ * @datecreated 20-12-2016
+ */
+
+
+using UnityEngine;
 using System.Collections;
 
 public class PuppetManager : MonoBehaviour
@@ -42,7 +49,6 @@ public class PuppetManager : MonoBehaviour
 
     public bool notFirstPlay;
 
-    // Use this for initialization
     void Start()
     {
         if (!notFirstPlay)
@@ -65,9 +71,8 @@ public class PuppetManager : MonoBehaviour
 
     }
 
-    /**
-     * the boolean is for checking if the puppet died
-     */
+
+    //Update the puppet every turn.
     public bool notifyPuppetEndTurn()
     {
 
@@ -258,7 +263,6 @@ public class PuppetManager : MonoBehaviour
 
     public void removeAllActivities()
     {
-        Debug.Log("removed pupppet activiuty");
         busy = false;
         if (occupation != null)
         {

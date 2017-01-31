@@ -1,8 +1,15 @@
-﻿using UnityEngine;
+﻿/*
+ * This script handles the washing minigame.
+ * @author Marnix Blaauw & Daniel Slobben
+ * @datecreated 12-12-2016
+ */
+
+using UnityEngine;
 using UnityEngine.UI;
 
-public class WashingManager : MonoBehaviour {
-        
+public class WashingManager : MonoBehaviour
+{
+
     public GameObject puppet;
     public GameObject dirtyPuppet;
     public float radius;
@@ -30,21 +37,18 @@ public class WashingManager : MonoBehaviour {
         Debug.Log(width * height * percentageRequired);
         if (checkIfDone())
         {
-            // The player finished.
-            // plz go back to game scene now.
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
             LoadSavePlayer loadSavePlayer = GetComponent<LoadSavePlayer>();
             loadSavePlayer.loadPlayer(SaveLoadController.control.playerIdentity);
-            //Application.LoadLevel("game");
         }
         if (Input.GetMouseButton(0))
         {
-            
+
             hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             if (hitInfo)
             {
                 UpdateTexture(true);
-                
+
             }
             else
             {
@@ -61,9 +65,8 @@ public class WashingManager : MonoBehaviour {
         }
     }
 
-    /**
-     * This function put a circle around the mouse and changes the color values of all the pixels inside the circle
-     */
+
+    //This function put a circle around the mouse and changes the color values of all the pixels inside the circle
     public Texture2D CopyTexture2D(Texture2D copiedTexture2D)
     {
         float differenceX;
@@ -82,7 +85,7 @@ public class WashingManager : MonoBehaviour {
             {
                 differenceX = x - m1;
                 differenceY = y - m2;
-                
+
                 // if the pixel is in the circle
                 if (differenceX * differenceX + differenceY * differenceY <= radius * radius)
                 {

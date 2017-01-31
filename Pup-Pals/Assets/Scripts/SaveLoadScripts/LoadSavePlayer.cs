@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿/*
+ * This script loads the save files.
+ * @author Marnix Blaauw & Daniel Slobben
+ * @datecreated 16-12-2016
+ */
+
+using UnityEngine;
 using System.Collections;
 
 public class LoadSavePlayer : MonoBehaviour

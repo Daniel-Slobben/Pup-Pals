@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿/*
+ * This script adds a collider to the round menu buttons.
+ * @author Marnix Blaauw & Daniel Slobben
+ * @datecreated 14-12-2016
+ */
+
+using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(RectTransform), typeof(Collider2D))]

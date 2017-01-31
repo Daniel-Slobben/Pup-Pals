@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿/*
+ * This script deletes savefiles.
+ * @author Marnix Blaauw & Daniel Slobben
+ * @datecreated 12-01-2017
+ */
+
+using UnityEngine;
 using System.Collections;
 using System.IO;
 

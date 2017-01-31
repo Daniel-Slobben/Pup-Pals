@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿/*
+ * The controller for the saveload controller object.
+ * @author Marnix Blaauw & Daniel Slobben
+ * @datecreated 16-12-2016
+ */
+
+using UnityEngine;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
@@ -21,8 +27,6 @@ public class SaveLoadController : MonoBehaviour
 
     void Awake()
     {
-       
-
         if (control == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -32,20 +36,18 @@ public class SaveLoadController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
     }
 
     public void Update()
     {
-        if(currentScene != Application.loadedLevelName && currentScene != null)
+        if (currentScene != Application.loadedLevelName && currentScene != null)
         {
             currentScene = Application.loadedLevelName;
 
-            if(currentScene == "MainMenu" && currentScene != "CreatePlayer")
+            if (currentScene == "MainMenu" && currentScene != "CreatePlayer")
             {
-                if(!gameObject.GetComponent<PlayAudio>().mainMenuSound.isPlaying)
-                gameObject.GetComponent<PlayAudio>().playMenuSound();
+                if (!gameObject.GetComponent<PlayAudio>().mainMenuSound.isPlaying)
+                    gameObject.GetComponent<PlayAudio>().playMenuSound();
             }
             if (currentScene == "game")
             {
@@ -54,6 +56,7 @@ public class SaveLoadController : MonoBehaviour
         }
     }
 
+    //Saves the game per playeridentity.
     public void Save(int playerIdentity)
     {
         BinaryFormatter bf = new BinaryFormatter();
@@ -65,8 +68,8 @@ public class SaveLoadController : MonoBehaviour
         file.Close();
     }
 
+    //loads the game per playeridentity.
     public void Load(int playerIdentity)
-    //Om aan te roepen: SaveLoadController.control.Load();
     {
         if (File.Exists(Application.persistentDataPath + "/" + playerIdentity + ".dat"))
         {
@@ -85,19 +88,22 @@ public class SaveLoadController : MonoBehaviour
             this.playerName = "";
             Application.LoadLevel("CreatePlayer");
         }
-        
+
     }
 
+    //Sets the playerID.
     public void setPlayerIdentity(int id)
     {
         this.playerIdentity = id;
     }
 
+    //Gets the playerID.
     public int getPlayerIdentity()
     {
         return this.playerIdentity;
     }
 
+    //Gets the playername from the .dat file.
     public string getPlayerName(int playerId)
     {
 
@@ -115,13 +121,14 @@ public class SaveLoadController : MonoBehaviour
         }
     }
 
+    //Sets the player name.
     public void setPlayerName(string playerName)
     {
-        Debug.Log("Set player name!");
         this.playerName = playerName;
     }
 }
 
+//Objects that are beeing serialized.
 [Serializable]
 class PlayerData
 {

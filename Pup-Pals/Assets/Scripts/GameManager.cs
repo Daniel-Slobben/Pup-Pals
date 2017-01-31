@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿/*
+ * This script handles the actions of every turn.
+ * @author Marnix Blaauw & Daniel Slobben
+ * @datecreated 16-12-2016
+ */
+
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
@@ -11,8 +17,8 @@ public class GameManager : MonoBehaviour
     public int money;
     public int turnNumber;
 
-    public List<GameObject> puppets;
-    public List<GameObject> puppetSlots;
+    public List<GameObject> puppets;        //List of all the instantiated puppet objects.
+    public List<GameObject> puppetSlots;    //List of all the available puppetslots.
 
     public static GameObject PuppetTransport;
     CreateMissions createMissionScript;
@@ -26,7 +32,7 @@ public class GameManager : MonoBehaviour
     public GameObject GUI;
     public GameObject eventPanel;
     public GameObject gameOverScreen;
-    public int i;
+    public int i;                           //Int that is used for checking the tutorial after 5 frames.
     private Events events;
 
     Text foodText;
@@ -35,7 +41,7 @@ public class GameManager : MonoBehaviour
     Text turnNumberText;
     Text text;
 
-    // Use this for initialization
+    //Instantiate all the text, create missions and get the player ID.
     void Start()
     {
         i = 0;
@@ -67,7 +73,7 @@ public class GameManager : MonoBehaviour
 
         Invoke("checkSlots", 1);
     }
-    // Update is called once per frame
+    //Check if tutorial has to be launched, update text and check if the cursor has to be set.
     void Update()
     {
 
@@ -117,6 +123,7 @@ public class GameManager : MonoBehaviour
         checkIfGameIsWon();
     }
 
+    //Creates a new puppet
     public void addPuppet(GameObject puppet)
     {
         if (puppets.Count < 6)
@@ -129,8 +136,6 @@ public class GameManager : MonoBehaviour
                 GameObject newPuppet = Instantiate(puppet);
                 PuppetManager puppetManager = newPuppet.GetComponent<PuppetManager>();
                 puppetManager.puppetId = puppetId;
-
-                //puppetSlots[puppetId].SetActive(true);
                 PuppetPanel slotScript = (PuppetPanel)puppetSlots[puppetId].GetComponent(typeof(PuppetPanel));
                 slotScript.puppetSlot = newPuppet;
                 puppets.Add(newPuppet);
@@ -147,19 +152,18 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("No slots available");
+            showEventPanel("There are no empty slots available!");
         }
     }
 
+    //Removes the puppet
     public void removePuppet(GameObject puppetToRemove)
     {
-        Debug.Log("Removing puppet..");
         foreach (GameObject puppet in puppets)
         {
             if (puppetToRemove == puppet)
             {
                 PuppetManager puppetManager = puppet.GetComponent<PuppetManager>();
-                //Change slot icon to empty
                 puppets.Remove(puppetToRemove);
                 Destroy(puppet);
                 return;
@@ -167,19 +171,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //Sets amount of food.
     public bool setFood(int amountOfFood)
     {
         if (food + amountOfFood < 0)
         {
-            // game should go dead
             gameOverScreen.SetActive(true);
             return false;
         }
         food += amountOfFood;
-        //SaveLoadController.control.food += amountOfFood;
         foodText.text = "" + food;
         return true;
     }
+    
+    //Sets amount of wood.
     public bool setWood(int amountOfWood)
     {
         if (buildingMaterials + amountOfWood < 0)
@@ -187,10 +192,11 @@ public class GameManager : MonoBehaviour
             return false;
         }
         buildingMaterials += amountOfWood;
-        //SaveLoadController.control.buldingMaterials += amountOfWood;
         buildingMaterialsText.text = "" + buildingMaterials;
         return true;
     }
+
+    //Sets amount of gold.
     public bool setMoney(int AmountOfMoney)
     {
         if (money + AmountOfMoney < 0)
@@ -198,10 +204,11 @@ public class GameManager : MonoBehaviour
             return false;
         }
         money += AmountOfMoney;
-        //SaveLoadController.control.money += AmountOfMoney;
         moneyText.text = "" + money;
         return true;
     }
+
+    //Updates building stats.
     private void notifyBuildingOfNextTurn()
     {
         foreach (Building building in buildings)
@@ -210,6 +217,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //Adds new building.
     public void addBuilding(Building building)
     {
         if (!buildings.Contains(building))
@@ -218,6 +226,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    //Removes building.
     public void removeBuilding(Building buildingToRemove)
     {
         foreach (Building building in buildings)
@@ -230,6 +240,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //Updates every puppet.
     public void updatePuppets(List<GameObject> puppets)
     {
         List<GameObject> tempPuppets;
@@ -247,6 +258,7 @@ public class GameManager : MonoBehaviour
 
     }
 
+    //Checks for empty puppetslots.
     public int findEmptyPuppetSlot()
     {
         foreach (GameObject slot in puppetSlots)
@@ -273,6 +285,8 @@ public class GameManager : MonoBehaviour
 
         }
     }
+
+    //Popup panel for event information.
     public void showEventPanel(string text)
     {
         if (showEvents = true)
@@ -290,6 +304,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //Double check for the tutorial launch.
     public void checkTutorial(bool firstPlay)
     {
         if (firstPlay == false)
@@ -305,6 +320,7 @@ public class GameManager : MonoBehaviour
 
     }
 
+    //Check for the winstate of the game.
     private void checkIfGameIsWon()
     {
         int counter = 0;
@@ -322,6 +338,8 @@ public class GameManager : MonoBehaviour
 
         }
     }
+
+
     private void winState()
     {
         // we win now boi

@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿/*
+ * This script creates random generated events.
+ * @author Marnix Blaauw & Daniel Slobben
+ * @datecreated 13-01-2017
+ */
+
+using UnityEngine;
 using System.Collections;
 
 public class Events {
@@ -14,7 +20,6 @@ public class Events {
     {
         preRoll();
         int randomNumber = Random.Range(1, 100);
-        Debug.Log("event RNG roll: " + randomNumber);
 
         if (randomNumber <= 50)
         {

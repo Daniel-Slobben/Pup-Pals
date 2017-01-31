@@ -1,4 +1,11 @@
-﻿using UnityEngine;
+﻿/*
+ * This script handles audiolistener in the different scenes.
+ * @author Marnix Blaauw & Daniel Slobben
+ * @datecreated 20-01-2017
+ */
+
+
+using UnityEngine;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;

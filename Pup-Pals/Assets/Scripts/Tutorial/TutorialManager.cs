@@ -1,4 +1,11 @@
-﻿using UnityEngine;
+﻿/*
+ * This script handles the tutorial.
+ * @author Marnix Blaauw & Daniel Slobben
+ * @datecreated 23-01-2017
+ */
+
+
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
@@ -16,7 +23,7 @@ public class TutorialManager : MonoBehaviour {
     public Button nextTurnButton;
     public Button puppetButton;
 
-
+    //All the arrows, instantiated in the inspector to keep them at the good place.
     public Transform arrow1;
     public Transform arrow2;
     public Transform arrow3;

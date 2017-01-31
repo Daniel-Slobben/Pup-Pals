@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿/*
+ * This script handles the washing minigame.
+ * @author Marnix Blaauw & Daniel Slobben
+ * @datecreated 12-12-2016
+ */
+
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System;

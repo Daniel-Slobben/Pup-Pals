@@ -1,4 +1,11 @@
-﻿using UnityEngine;
+﻿/*
+ * This script creates missions.
+ * @author Marnix Blaauw & Daniel Slobben
+ * @datecreated 17-01-2017
+ */
+
+
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
