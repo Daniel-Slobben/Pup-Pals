@@ -27,11 +27,13 @@ public class GameManager : MonoBehaviour
 
     public bool firstPlay;
     public bool showEvents;
+    public bool gameWon;
 
     public GameObject tutorialPanel;
     public GameObject GUI;
     public GameObject eventPanel;
     public GameObject gameOverScreen;
+    public GameObject winScreen;
     public int i;                           //Int that is used for checking the tutorial after 5 frames.
     private Events events;
 
@@ -320,14 +322,13 @@ public class GameManager : MonoBehaviour
 
     }
 
-    //Check for the winstate of the game.
     private void checkIfGameIsWon()
     {
         int counter = 0;
         foreach (GameObject puppet in puppets)
         {
             PuppetManager puppetScript = puppet.GetComponent<PuppetManager>();
-            if (puppetScript.sanitized)
+            if (puppetScript.schooled)
             {
                 counter++;
             }
@@ -338,10 +339,9 @@ public class GameManager : MonoBehaviour
 
         }
     }
-
-
     private void winState()
     {
-        // we win now boi
+        gameWon = true;
+        winScreen.SetActive(true);
     }
 }
